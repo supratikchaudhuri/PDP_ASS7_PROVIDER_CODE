@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1053.0" y="373.0">controller.PortfolioControllerGUI</node>
+    <node x="6176.0" y="118.0">model.PortfolioModelImpl</node>
+    <node x="4020.0" y="131.0">model.PortfolioModel</node>
+    <node x="1611.0" y="318.0">model.Portfolio</node>
+    <node x="2373.0" y="54.0">view.PortfolioGUIView</node>
+    <node x="3770.0" y="329.0">controller.PortfolioController</node>
+    <node x="583.0" y="338.0">controller.PortfolioControllerGUIImpl</node>
+    <node x="6643.0" y="351.0">model.User</node>
+    <node x="7751.0" y="109.0">view.PortfolioView</node>
+    <node x="4754.0" y="329.0">model.Stock</node>
+    <node x="3245.0" y="371.0">Main</node>
+    <node x="1303.0" y="294.0">PortfolioModelImplTest</node>
+    <node x="7199.0" y="349.0">PortfolioImplTest</node>
+    <node x="335.0" y="327.0">StockImplTest</node>
+    <node x="3441.0" y="283.0">model.StockImpl</node>
+    <node x="6931.0" y="338.0">model.UserImpl</node>
+    <node x="5405.0" y="316.0">utils.DataFetcher</node>
+    <node x="4487.0" y="338.0">UserImplTest</node>
+    <node x="5738.0" y="305.0">controller.PortfolioControllerImpl</node>
+    <node x="-122.0" y="261.0">model.PortfolioImpl</node>
+    <node x="2809.0" y="-14.0">view.PortfolioGUIViewImpl</node>
+    <node x="1988.0" y="316.0">utils.DataParser</node>
+    <node x="7435.0" y="96.0">view.PortfolioViewImpl</node>
+    <node x="5083.0" y="239.0">PortfolioViewImplTest</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="PortfolioImplTest" target="model.StockImpl" relationship="CREATE">
+      <point x="-25.75" y="-61.5" />
+      <point x="7276.25" y="21.0" />
+      <point x="3465.9166666666665" y="21.0" />
+      <point x="-124.58333333333331" y="-127.5" />
+    </edge>
+    <edge source="PortfolioModelImplTest" target="model.PortfolioModel" relationship="TO_ONE">
+      <point x="-69.5" y="116.5" />
+      <point x="1372.5" y="885.0" />
+      <point x="4092.833333333333" y="885.0" />
+      <point x="-145.66666666666669" y="279.5" />
+    </edge>
+    <edge source="Main" target="controller.PortfolioControllerGUIImpl" relationship="CREATE">
+      <point x="0.0" y="39.5" />
+      <point x="3328.0" y="845.0" />
+      <point x="877.0" y="845.0" />
+      <point x="84.0" y="72.5" />
+    </edge>
+    <edge source="Main" target="controller.PortfolioControllerImpl" relationship="CREATE">
+      <point x="55.33333333333333" y="-39.5" />
+      <point x="3383.3333333333335" y="51.0" />
+      <point x="6095.0" y="51.0" />
+      <point x="153.0" y="-105.5" />
+    </edge>
+    <edge source="view.PortfolioViewImpl" target="view.PortfolioView" relationship="REALIZATION">
+      <point x="133.0" y="-0.0" />
+      <point x="-133.0" y="-0.0" />
+    </edge>
+    <edge source="PortfolioViewImplTest" target="view.PortfolioViewImpl" relationship="CREATE">
+      <point x="36.5" y="171.5" />
+      <point x="5265.5" y="965.0" />
+      <point x="7568.0" y="965.0" />
+      <point x="0.0" y="314.5" />
+    </edge>
+    <edge source="controller.PortfolioControllerGUIImpl" target="model.User" relationship="TO_ONE">
+      <point x="-168.0" y="72.5" />
+      <point x="625.0" y="975.0" />
+      <point x="6841.333333333333" y="975.0" />
+      <point x="79.33333333333334" y="59.5" />
+    </edge>
+    <edge source="PortfolioImplTest" target="model.Portfolio" relationship="TO_ONE">
+      <point x="25.75" y="-61.5" />
+      <point x="7327.75" y="-54.0" />
+      <point x="1784.5" y="-54.0" />
+      <point x="0.0" y="-92.5" />
+    </edge>
+    <edge source="StockImplTest" target="model.StockImpl" relationship="CREATE">
+      <point x="54.5" y="83.5" />
+      <point x="498.5" y="875.0" />
+      <point x="3627.875" y="875.0" />
+      <point x="37.375" y="127.5" />
+    </edge>
+    <edge source="model.UserImpl" target="model.User" relationship="REALIZATION">
+      <point x="-119.0" y="-0.0" />
+      <point x="119.0" y="-0.0" />
+    </edge>
+    <edge source="Main" target="view.PortfolioViewImpl" relationship="CREATE">
+      <point x="-55.333333333333314" y="-39.5" />
+      <point x="3272.6666666666665" y="-44.0" />
+      <point x="7568.0" y="-44.0" />
+      <point x="0.0" y="-314.5" />
+    </edge>
+    <edge source="PortfolioModelImplTest" target="model.PortfolioModelImpl" relationship="CREATE">
+      <point x="92.66666666666666" y="-116.5" />
+      <point x="1534.6666666666667" y="-24.0" />
+      <point x="6394.5" y="-24.0" />
+      <point x="0.0" y="-292.5" />
+    </edge>
+    <edge source="model.PortfolioImpl" target="model.Portfolio" relationship="REALIZATION">
+      <point x="0.0" y="-149.5" />
+      <point x="91.5" y="-34.0" />
+      <point x="1668.8333333333335" y="-34.0" />
+      <point x="-115.66666666666663" y="-92.5" />
+    </edge>
+    <edge source="Main" target="view.PortfolioGUIViewImpl" relationship="CREATE">
+      <point x="-83.0" y="-0.0" />
+      <point x="193.0" y="-0.0" />
+    </edge>
+    <edge source="model.PortfolioImpl" target="model.StockImpl" relationship="TO_MANY">
+      <point x="160.125" y="149.5" />
+      <point x="251.625" y="905.0" />
+      <point x="3702.625" y="905.0" />
+      <point x="112.125" y="127.5" />
+    </edge>
+    <edge source="UserImplTest" target="model.User" relationship="TO_ONE">
+      <point x="59.25" y="72.5" />
+      <point x="4664.75" y="955.0" />
+      <point x="6762.0" y="955.0" />
+      <point x="0.0" y="59.5" />
+    </edge>
+    <edge source="PortfolioImplTest" target="model.PortfolioImpl" relationship="CREATE">
+      <point x="77.25" y="-61.5" />
+      <point x="7379.25" y="-74.0" />
+      <point x="-50.833333333333314" y="-74.0" />
+      <point x="-142.33333333333331" y="-149.5" />
+    </edge>
+    <edge source="UserImplTest" target="model.UserImpl" relationship="CREATE">
+      <point x="59.25" y="-72.5" />
+      <point x="4664.75" y="61.0" />
+      <point x="7020.25" y="61.0" />
+      <point x="-29.75" y="-72.5" />
+    </edge>
+    <edge source="model.PortfolioModelImpl" target="model.PortfolioModel" relationship="REALIZATION">
+      <point x="-109.25" y="292.5" />
+      <point x="6285.25" y="935.0" />
+      <point x="4384.166666666667" y="935.0" />
+      <point x="145.66666666666669" y="279.5" />
+    </edge>
+    <edge source="PortfolioModelImplTest" target="model.UserImpl" relationship="CREATE">
+      <point x="0.0" y="-116.5" />
+      <point x="1442.0" y="-64.0" />
+      <point x="7139.25" y="-64.0" />
+      <point x="89.25" y="-72.5" />
+    </edge>
+    <edge source="controller.PortfolioControllerImpl" target="controller.PortfolioController" relationship="REALIZATION">
+      <point x="-51.0" y="-105.5" />
+      <point x="5891.0" y="81.0" />
+      <point x="3880.0" y="81.0" />
+      <point x="0.0" y="-81.5" />
+    </edge>
+    <edge source="Main" target="model.PortfolioModelImpl" relationship="CREATE">
+      <point x="0.0" y="-39.5" />
+      <point x="3328.0" y="31.0" />
+      <point x="6248.833333333333" y="31.0" />
+      <point x="-145.66666666666669" y="-292.5" />
+    </edge>
+    <edge source="PortfolioModelImplTest" target="model.PortfolioImpl" relationship="CREATE">
+      <point x="-92.66666666666666" y="-116.5" />
+      <point x="1349.3333333333333" y="246.0" />
+      <point x="233.83333333333331" y="246.0" />
+      <point x="142.33333333333331" y="-149.5" />
+    </edge>
+    <edge source="PortfolioImplTest" target="model.StockImpl" relationship="TO_ONE">
+      <point x="-77.25" y="-61.5" />
+      <point x="7224.75" y="41.0" />
+      <point x="3515.75" y="41.0" />
+      <point x="-74.75" y="-127.5" />
+    </edge>
+    <edge source="model.PortfolioModelImpl" target="model.PortfolioImpl" relationship="CREATE">
+      <point x="109.25" y="292.5" />
+      <point x="6503.75" y="985.0" />
+      <point x="-68.625" y="985.0" />
+      <point x="-160.125" y="149.5" />
+    </edge>
+    <edge source="controller.PortfolioControllerGUIImpl" target="controller.PortfolioControllerGUI" relationship="REALIZATION">
+      <point x="210.0" y="-0.0" />
+      <point x="-110.0" y="-0.0" />
+    </edge>
+    <edge source="PortfolioViewImplTest" target="model.UserImpl" relationship="CREATE">
+      <point x="109.5" y="171.5" />
+      <point x="5338.5" y="723.0" />
+      <point x="7050.0" y="723.0" />
+      <point x="0.0" y="72.5" />
+    </edge>
+    <edge source="controller.PortfolioControllerImpl" target="model.PortfolioModel" relationship="TO_ONE">
+      <point x="-153.0" y="-105.5" />
+      <point x="5789.0" y="101.0" />
+      <point x="4238.5" y="101.0" />
+      <point x="0.0" y="-279.5" />
+    </edge>
+    <edge source="PortfolioViewImplTest" target="model.PortfolioImpl" relationship="CREATE">
+      <point x="-109.5" y="171.5" />
+      <point x="5119.5" y="965.0" />
+      <point x="38.125" y="965.0" />
+      <point x="-53.375" y="149.5" />
+    </edge>
+    <edge source="PortfolioViewImplTest" target="view.PortfolioView" relationship="TO_ONE">
+      <point x="-36.5" y="171.5" />
+      <point x="5192.5" y="995.0" />
+      <point x="7950.5" y="995.0" />
+      <point x="66.5" y="301.5" />
+    </edge>
+    <edge source="view.PortfolioGUIViewImpl" target="view.PortfolioGUIView" relationship="REALIZATION">
+      <point x="-193.0" y="-0.0" />
+      <point x="193.0" y="-0.0" />
+    </edge>
+    <edge source="UserImplTest" target="model.StockImpl" relationship="CREATE">
+      <point x="-59.25" y="-72.5" />
+      <point x="4546.25" y="121.0" />
+      <point x="3715.0833333333335" y="121.0" />
+      <point x="124.58333333333333" y="-127.5" />
+    </edge>
+    <edge source="model.StockImpl" target="model.Stock" relationship="REALIZATION">
+      <point x="74.75" y="-127.5" />
+      <point x="3665.25" y="111.0" />
+      <point x="4903.5" y="111.0" />
+      <point x="0.0" y="-81.5" />
+    </edge>
+    <edge source="StockImplTest" target="model.Stock" relationship="TO_ONE">
+      <point x="-54.5" y="83.5" />
+      <point x="389.5" y="925.0" />
+      <point x="4903.5" y="925.0" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="PortfolioModelImplTest" target="model.StockImpl" relationship="CREATE">
+      <point x="69.5" y="116.5" />
+      <point x="1511.5" y="855.0" />
+      <point x="3478.375" y="855.0" />
+      <point x="-112.125" y="127.5" />
+    </edge>
+    <edge source="controller.PortfolioControllerImpl" target="model.StockImpl" relationship="CREATE">
+      <point x="51.0" y="-105.5" />
+      <point x="5993.0" y="71.0" />
+      <point x="3565.5833333333335" y="71.0" />
+      <point x="-24.916666666666657" y="-127.5" />
+    </edge>
+    <edge source="controller.PortfolioControllerGUIImpl" target="model.StockImpl" relationship="CREATE">
+      <point x="0.0" y="72.5" />
+      <point x="793.0" y="865.0" />
+      <point x="3553.125" y="865.0" />
+      <point x="-37.375" y="127.5" />
+    </edge>
+    <edge source="controller.PortfolioControllerGUIImpl" target="view.PortfolioGUIView" relationship="TO_ONE">
+      <point x="168.0" y="72.5" />
+      <point x="961.0" y="782.0" />
+      <point x="2566.0" y="782.0" />
+      <point x="0.0" y="356.5" />
+    </edge>
+    <edge source="model.UserImpl" target="model.Portfolio" relationship="TO_ONE">
+      <point x="29.75" y="-72.5" />
+      <point x="7079.75" y="-34.0" />
+      <point x="1900.1666666666667" y="-34.0" />
+      <point x="115.66666666666666" y="-92.5" />
+    </edge>
+    <edge source="controller.PortfolioControllerImpl" target="view.PortfolioView" relationship="TO_ONE">
+      <point x="-102.0" y="105.5" />
+      <point x="5840.0" y="945.0" />
+      <point x="7817.5" y="945.0" />
+      <point x="-66.5" y="301.5" />
+    </edge>
+    <edge source="PortfolioViewImplTest" target="model.StockImpl" relationship="CREATE">
+      <point x="0.0" y="-171.5" />
+      <point x="5229.0" y="91.0" />
+      <point x="3615.4166666666665" y="91.0" />
+      <point x="24.91666666666667" y="-127.5" />
+    </edge>
+    <edge source="controller.PortfolioControllerGUIImpl" target="model.PortfolioModel" relationship="TO_ONE">
+      <point x="-84.0" y="72.5" />
+      <point x="709.0" y="895.0" />
+      <point x="4238.5" y="895.0" />
+      <point x="0.0" y="279.5" />
+    </edge>
+    <edge source="controller.PortfolioControllerImpl" target="model.User" relationship="TO_ONE">
+      <point x="102.0" y="105.5" />
+      <point x="6044.0" y="713.0" />
+      <point x="6682.666666666667" y="713.0" />
+      <point x="-79.33333333333334" y="59.5" />
+    </edge>
+    <edge source="model.PortfolioModelImpl" target="model.UserImpl" relationship="CREATE">
+      <point x="145.66666666666669" y="-292.5" />
+      <point x="6540.166666666667" y="108.0" />
+      <point x="6960.75" y="108.0" />
+      <point x="-89.25" y="-72.5" />
+    </edge>
+    <edge source="UserImplTest" target="model.PortfolioImpl" relationship="CREATE">
+      <point x="-59.25" y="72.5" />
+      <point x="4546.25" y="915.0" />
+      <point x="144.875" y="915.0" />
+      <point x="53.375" y="149.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.14192915798504718" showDependencies="true" x="3957.5" y="470.5" />
+  <SelectedNodes>
+    <node>view.PortfolioGUIViewImpl</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
