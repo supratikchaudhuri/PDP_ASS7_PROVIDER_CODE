@@ -6,6 +6,12 @@
             <ticker1>MSFT</ticker1>
             <qty1>10</qty1>
             <PurchaseDate1>2020-10-10</PurchaseDate1>
+            <ticker1>GOOG</ticker1>
+            <qty1>97</qty1>
+            <PurchaseDate1>2022-12-10</PurchaseDate1>
+            <ticker1>GOOG</ticker1>
+            <qty1>5</qty1>
+            <PurchaseDate1>2022-10-10</PurchaseDate1>
         </Portfolio1>
         <Portfolio2/>
         <Portfolio3>

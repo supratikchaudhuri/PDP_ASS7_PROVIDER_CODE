@@ -324,7 +324,13 @@ public class PortfolioImpl implements Portfolio {
     HashMap<String, BigDecimal> stockList = new HashMap<>();
 
     stocks.forEach(stock -> {
-      stockList.put(stock.getTicker(), stock.getQuantity());
+      String ticker = stock.getTicker();
+
+      if(stockList.containsKey(ticker)) {
+        stockList.put(ticker, stockList.get(ticker).add(stock.getQuantity()));
+      } else {
+        stockList.put(ticker, stock.getQuantity());
+      }
     });
 
     return stockList;
