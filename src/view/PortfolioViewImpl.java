@@ -109,7 +109,8 @@ public class PortfolioViewImpl implements PortfolioView {
     this.output.println("3. View the daily performance.");
     this.output.println("4. View the monthly performance. ");
     this.output.println("5. View the cost basis by a specific date.");
-    this.output.println("6. Return back to the main menu");
+    this.output.println("6. Re-balance this portfolio.");
+    this.output.println("7. Return back to the main menu");
   }
 
   @Override

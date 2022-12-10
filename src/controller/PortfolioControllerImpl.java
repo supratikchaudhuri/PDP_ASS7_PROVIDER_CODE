@@ -405,7 +405,15 @@ public class PortfolioControllerImpl implements PortfolioController {
           this.view.displayCustom(
               this.model.costBasis(currentPortfolio, costBasisDate, commissionRate));
         }
-        if (viewPortfolioOption.equals("6")) {
+
+        // re-balance
+        if(viewPortfolioOption.equals("6")) {
+          this.view.displayCustom("Enter date to re-balance on (YYYY-MM-DD : ");
+          LocalDate date = LocalDate.parse(this.scanInput());
+          System.out.println(currentPortfolio.getListOfStocks());
+        }
+
+        if (viewPortfolioOption.equals("7")) {
           this.userOptions();
         }
         break;
