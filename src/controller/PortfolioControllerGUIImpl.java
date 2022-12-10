@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Deque;
@@ -363,7 +364,14 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         this.GUIView.performanceChart(performance, timeframe);
         break;
 
-//      case "Rebalance":
+      case "Rebalance Portfolio":
+        System.out.println("here");
+        currentPortfolio = this.showPortfolio(portfolioChoice);
+        HashMap<String, BigDecimal> currentStocks= currentPortfolio.getListOfStocks();
+        for(String ticker: currentStocks.keySet()) {
+          System.out.println(ticker + "   " + currentStocks.get(ticker));
+        }
+        this.GUIView.getRebalanceWeightage(currentStocks.keySet());
 
       default:
         // Do nothing.

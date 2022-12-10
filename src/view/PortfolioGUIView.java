@@ -3,6 +3,7 @@ package view;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * This interface represents this application's Graphical User Interface.
@@ -200,4 +201,6 @@ public interface PortfolioGUIView {
    * @return the dollar amount.
    */
   int getDollarAmount();
+
+  void getRebalanceWeightage(Set<String> tickers);
 }

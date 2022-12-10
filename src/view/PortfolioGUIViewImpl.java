@@ -1,13 +1,14 @@
 package view;
 
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.math.BigDecimal;
 import java.time.Month;
 import java.util.HashMap;
+import java.util.Set;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -332,7 +333,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     JButton performanceChartButton = buttonCreator("4. Performance Chart", "Performance Chart");
     buttonPanel.add(performanceChartButton);
 
-    JButton rebalanceButton = buttonCreator("5. Rebalance Portfolio", "Rebalance");
+    JButton rebalanceButton = buttonCreator("5. Rebalance Portfolio", "Rebalance Portfolio");
     buttonPanel.add(rebalanceButton);
 
     JButton menuButton = buttonCreator("6. Return to Main Menu", "Main Menu");
@@ -634,6 +635,32 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
   @Override
   public int getDollarAmount() {
     return Integer.parseInt(this.dollarAmount.getText());
+  }
+
+  @Override
+  public void getRebalanceWeightage(Set<String> tickers) {
+    resetPanel();
+    panel = panelCreator(mainPanelHeight);
+    panel.setLayout(new GridLayout());
+    GridBagConstraints gbc = new GridBagConstraints();
+    message = new JLabel("Please enter new weightages for stocks in your portfolio");
+    GridLayout stockWeightageGrid = new GridLayout(tickers.size(), 2);
+    gbc.gridwidth = 2;
+    panel.add(message, gbc);
+
+    gbc.gridwidth = 1;
+
+    for(String ticker: tickers) {
+      gbc.gridx++;
+      message = new JLabel(ticker);
+      gbc.gridx = 0;
+      panel.add(message, gbc);
+
+
+    }
+
+
+    window.add(panel);
   }
 
   /**
