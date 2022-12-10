@@ -21,6 +21,9 @@
             <ticker1>GOOG</ticker1>
             <qty1>1</qty1>
             <PurchaseDate1>2021-10-10</PurchaseDate1>
+            <ticker1>NFLX</ticker1>
+            <qty1>15</qty1>
+            <PurchaseDate1>2022-12-10</PurchaseDate1>
         </Portfolio1>
         <Portfolio2/>
         <Portfolio3>

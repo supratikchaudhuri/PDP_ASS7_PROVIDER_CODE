@@ -41,6 +41,8 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
   private JTextField stockDate;
   private JTextField stockWeight;
   private JTextField dollarAmount;
+
+  private JTextField rebalanceWeightages;
   private JButton login;
   private int quantity;
   private String ticker;
@@ -641,26 +643,34 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
   public void getRebalanceWeightage(Set<String> tickers) {
     resetPanel();
     panel = panelCreator(mainPanelHeight);
-    panel.setLayout(new GridLayout());
+    panel.setLayout(new GridBagLayout());
     GridBagConstraints gbc = new GridBagConstraints();
-    message = new JLabel("Please enter new weightages for stocks in your portfolio");
-    GridLayout stockWeightageGrid = new GridLayout(tickers.size(), 2);
+
     gbc.gridwidth = 2;
+    message = new JLabel("Please enter new weightages for stocks in your portfolio");
     panel.add(message, gbc);
 
-    gbc.gridwidth = 1;
+    String stocks = "";
+    for(String s : tickers) { stocks += ", " + s; }
+    message = new JLabel(stocks.substring(2));
+    gbc.gridx++;
+    panel.add(message, gbc);
 
-    for(String ticker: tickers) {
-      gbc.gridx++;
-      message = new JLabel(ticker);
-      gbc.gridx = 0;
-      panel.add(message, gbc);
+    rebalanceWeightages = new JTextField(50);
+    gbc.gridx++;
+    panel.add(rebalanceWeightages, gbc);
 
-
-    }
-
+    JButton rebalanceBtn = buttonCreator("Rebalance", "Rebalance");
+    gbc.gridx++;
+    panel.add(rebalanceBtn, gbc);
 
     window.add(panel);
+
+  }
+
+  @Override
+  public String getRebalanceWeightage() {
+    return this.rebalanceWeightages.getText();
   }
 
   /**

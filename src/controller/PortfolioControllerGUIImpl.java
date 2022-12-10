@@ -373,6 +373,12 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         }
         this.GUIView.getRebalanceWeightage(currentStocks.keySet());
 
+      case "Rebalance":
+        String weightageString = this.GUIView.getRebalanceWeightage();
+        System.out.println(weightageString);
+        currentPortfolio = this.showPortfolio(portfolioChoice);
+
+
       default:
         // Do nothing.
         break;
