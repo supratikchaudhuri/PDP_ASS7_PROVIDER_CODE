@@ -467,6 +467,7 @@ public class PortfolioModelImpl implements PortfolioModel {
   @Override
   public String totalSoldOnDate(String ticker, String date, int qty) {
     String result = DataFetcher.fetchDate(ticker, LocalDate.parse(date));
+    System.out.println(result);
     NumberFormat formatter = NumberFormat.getCurrencyInstance();
 
     BigDecimal total = new BigDecimal(result).multiply(new BigDecimal(qty));
