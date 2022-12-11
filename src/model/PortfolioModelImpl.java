@@ -473,4 +473,9 @@ public class PortfolioModelImpl implements PortfolioModel {
 
     return formatter.format(total);
   }
+
+  @Override
+  public void rebalance() {
+
+  }
 }

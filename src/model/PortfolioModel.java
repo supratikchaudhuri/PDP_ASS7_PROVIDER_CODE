@@ -226,5 +226,5 @@ public interface PortfolioModel {
    */
   String totalSoldOnDate(String ticker, String date, int qty);
 
-//  void rebalance();
+  void rebalance();
 }

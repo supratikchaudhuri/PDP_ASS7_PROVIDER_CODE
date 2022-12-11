@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -365,18 +366,45 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         break;
 
       case "Rebalance Portfolio":
-        System.out.println("here");
         currentPortfolio = this.showPortfolio(portfolioChoice);
-        HashMap<String, BigDecimal> currentStocks= currentPortfolio.getListOfStocks();
+        Map<String, BigDecimal> currentStocks= currentPortfolio.getListOfStocks();
         for(String ticker: currentStocks.keySet()) {
           System.out.println(ticker + "   " + currentStocks.get(ticker));
         }
         this.GUIView.getRebalanceWeightage(currentStocks.keySet());
 
+
       case "Rebalance":
         String weightageString = this.GUIView.getRebalanceWeightage();
-        System.out.println(weightageString);
-        currentPortfolio = this.showPortfolio(portfolioChoice);
+        if(weightageString.length() > 0) {
+          System.out.println(weightageString);
+          currentPortfolio = this.showPortfolio(portfolioChoice);
+          currentStocks = currentPortfolio.getListOfStocks();
+          String[] weightages = weightageString.replaceAll(" ", "")
+                  .split(",");
+
+
+          int idx = 0;  //idx for weightages
+          Map<String, Double> expectedWeightage = new HashMap<>();
+          for(String ticker: currentStocks.keySet()) {
+            expectedWeightage.put(ticker, Double.parseDouble(weightages[idx]));
+            idx++;
+          }
+
+          for(String ticker: expectedWeightage.keySet()) {
+            System.out.print(ticker + "  " + expectedWeightage.get(ticker));
+          }
+
+          int portfolioValue = this.model.getCurrentValue(currentPortfolio);
+          System.out.println("total value: " + portfolioValue);
+
+          Map<String, Double> currentStocksValue = new HashMap<>();
+          for(String ticker: currentStocks.keySet()) {
+            System.out.println("value" + this.model.getStock(ticker));
+            System.out.println("quantity: " + currentStocks.get(ticker));
+          }
+        }
+
 
 
       default:
