@@ -214,7 +214,7 @@ public interface PortfolioModel {
    * @param portfolio the portfolio.
    * @return the current value.
    */
-  int getCurrentValue(Portfolio portfolio);
+  double getCurrentValue(Portfolio portfolio);
 
   /**
    * Get the total value of the stocks sold on a certain date.

@@ -22,7 +22,7 @@ public class PortfolioImpl implements Portfolio {
   private Deque<StockImpl> stocks;
   private final LocalDate creationDate;
   private double commissionRate;
-  private int currentValue;
+  private double currentValue;
 
   /**
    * Creates a new PortfolioImpl object.
@@ -56,7 +56,7 @@ public class PortfolioImpl implements Portfolio {
     Deque<StockImpl> placeholder = new LinkedList<>();
     StringBuilder output = new StringBuilder();
     NumberFormat formatter = NumberFormat.getCurrencyInstance();
-    int total = 0;
+    double total = 0;
 
     output.append("Current Holdings \n");
     int length = this.stocks.size();
@@ -67,7 +67,7 @@ public class PortfolioImpl implements Portfolio {
       String ticker = current.getTicker();
       String price = DataFetcher.fetchToday(ticker);
       BigDecimal totalValue = new BigDecimal(price).multiply(qty);
-      total += totalValue.intValue();
+      total += totalValue.doubleValue();
       String newLine =
           "Ticker symbol: " + ticker + " Quantity: " + qty + " Value: " + formatter.format(
               totalValue) + "\n";
@@ -314,7 +314,7 @@ public class PortfolioImpl implements Portfolio {
   }
 
   @Override
-  public int getCurrentValue() {
+  public double getCurrentValue() {
     getPortfolio();
     return currentValue;
   }

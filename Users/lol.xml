@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<UserData>
+    <User username="lol">
+        <count>1</count>
+        <Portfolio1>
+            <ticker1>GOOG</ticker1>
+            <qty1>67.97947781239927</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>AAPL</ticker1>
+            <qty1>49</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>MSFT</ticker1>
+            <qty1>24.27797245538261</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>JNJ</ticker1>
+            <qty1>37</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>GOOG</ticker1>
+            <qty1>60.05963253465134</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>AAPL</ticker1>
+            <qty1>55.788618458075405</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>JNJ</ticker1>
+            <qty1>47.7658472743826</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>AAPL</ticker1>
+            <qty1>20.94928249859312</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>JNJ</ticker1>
+            <qty1>50.850404005917845</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+        </Portfolio1>
+    </User>
+</UserData>

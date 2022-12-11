@@ -460,7 +460,7 @@ public class PortfolioModelImpl implements PortfolioModel {
   }
 
   @Override
-  public int getCurrentValue(Portfolio portfolio) {
+  public double getCurrentValue(Portfolio portfolio) {
     return portfolio.getCurrentValue();
   }
 

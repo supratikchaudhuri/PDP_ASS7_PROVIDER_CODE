@@ -57,7 +57,7 @@ public interface Portfolio {
    *
    * @return current value of a portfolio.
    */
-  int getCurrentValue();
+  double getCurrentValue();
 
   /**
    * Converts the stocks within the portfolio into a HashMap.

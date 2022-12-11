@@ -203,6 +203,6 @@ public interface PortfolioGUIView {
    */
   int getDollarAmount();
 
-  void getRebalanceWeightage(List<String> tickers);
+  void getRebalanceWeightage(Set<String> tickers);
   String getRebalanceWeightage();
 }

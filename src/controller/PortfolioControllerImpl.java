@@ -194,7 +194,7 @@ public class PortfolioControllerImpl implements PortfolioController {
         this.view.displayCustom("\n");
         this.view.viewPortfolioOptions();
         String viewPortfolioOption = this.scanInput();
-        while (Integer.parseInt(viewPortfolioOption) > 6
+        while (Integer.parseInt(viewPortfolioOption) > 7
                 || Integer.parseInt(viewPortfolioOption) < 1) {
           this.view.invalidResponse();
           this.view.viewPortfolioOptions();
@@ -433,7 +433,8 @@ public class PortfolioControllerImpl implements PortfolioController {
             }
           } while (!is100);
 
-          int portfolioValue = this.model.getCurrentValue(currentPortfolio);
+          double portfolioValue = this.model.getCurrentValue(currentPortfolio);
+
           for (String ticker : currStocks.keySet()) {
             BigDecimal price = new BigDecimal(DataFetcher.fetchToday(ticker));
             double value = price.multiply(currStocks.get(ticker)).doubleValue();

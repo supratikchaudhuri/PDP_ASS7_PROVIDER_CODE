@@ -28,6 +28,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import utils.DataFetcher;
 import view.PortfolioGUIView;
 
 /**
@@ -372,7 +374,8 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         for(String ticker: currentStocks.keySet()) {
           System.out.println(ticker + "   " + currentStocks.get(ticker));
         }
-        this.GUIView.getRebalanceWeightage(new ArrayList<>(currentStocks.keySet()));
+
+        this.GUIView.getRebalanceWeightage(currentStocks.keySet());
 
 
       case "Rebalance":
@@ -381,53 +384,32 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
           System.out.println(weightageString);
           currentPortfolio = this.showPortfolio(portfolioChoice);
 
-          int totalValue = this.model.getCurrentValue(currentPortfolio);
-          System.out.println("total value: " + totalValue);
-
           currentStocks = currentPortfolio.getListOfStocks();
           String[] weightages = weightageString.replaceAll(" ", "")
                   .split(",");
 
-
-          int idx = 0;  //idx for weightages
-          Map<String, Double> expectedWeightage = new HashMap<>();
-          for(String ticker: currentStocks.keySet()) {
-            expectedWeightage.put(ticker, (Double.parseDouble(weightages[idx])/100) * totalValue);
-
-            idx++;
+          Map<String, Double> weights = new HashMap<>();
+          int j = 0;
+          for(String ticker : currentStocks.keySet()) {
+            weights.put(ticker, Double.parseDouble(weightages[j++]));
           }
 
-          Map<String, Double> changeQty = new HashMap<>();
-
-          for(String ticker: expectedWeightage.keySet()) {
-            String curValStr = this.model.getStock(ticker).split("\\$")[1];
-            double curVal = Double.parseDouble(curValStr);
-//            System.out.println("current: " + curVal + " expected: " + expectedWeightage.get(ticker));
-            double delta = (curVal*currentStocks.get(ticker).doubleValue() - expectedWeightage.get(ticker)) / curVal;
-//            System.out.println(ticker + "  " + delta);
-            changeQty.put(ticker, delta * -1);
+          double portfolioValue = this.model.getCurrentValue(currentPortfolio);
+          for (String ticker : currentStocks.keySet()) {
+            BigDecimal price = new BigDecimal(DataFetcher.fetchToday(ticker));
+            double value = price.multiply(currentStocks.get(ticker)).doubleValue();
+            double expectedValue = (weights.get(ticker) / 100.0) * portfolioValue;
+            double delta = value - expectedValue;
+            if (delta > 0) {
+              String qty = Double.toString(delta / price.doubleValue());
+              this.model.sellStockFromPortfolio(fileName, portfolioChoice, ticker, qty);
+            } else if (delta < 0) {
+              String qty = Double.toString(-delta / price.doubleValue());
+              this.model.addStockToPortfolio(fileName, portfolioChoice, ticker, qty, LocalDate.now().toString());
+            }
           }
-
-//          for(String ticker: changeQty.keySet()) {
-//            double delta = changeQty.get(ticker);
-//            if(delta >= 0) {
-//              System.out.println("buying" + ticker + " : " + delta);
-//              this.model.addStockToPortfolio(fileName, String.valueOf(portfolioCount),
-//                      ticker, String.valueOf(delta), LocalDate.now().toString());
-//            } else {
-//              System.out.println("selling" + ticker + " : " + delta);
-//              int qToSell = (int) Math.round(delta) * -1;
-////              this.model.totalSoldOnDate(ticker, "2022-12-07", qToSell);
-//              this.model.sellStockFromPortfolio(fileName, portfolioChoice, ticker, Integer.toString(qToSell));
-//            }
-//          }
-
-
-
         }
         break;
-
-
 
       default:
         // Do nothing.
