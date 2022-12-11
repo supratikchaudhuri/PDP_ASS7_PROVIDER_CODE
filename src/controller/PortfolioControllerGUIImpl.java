@@ -404,6 +404,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
             System.out.println("quantity: " + currentStocks.get(ticker));
           }
         }
+        break;
 
 
 
