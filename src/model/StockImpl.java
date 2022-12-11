@@ -39,7 +39,7 @@ public class StockImpl implements Stock {
    * @param purchaseDate the date of purchase
    * @throws IllegalArgumentException if quantity is 0, or date is in the future.
    */
-  public StockImpl(String ticker, int quantity, String purchaseDate)
+  public StockImpl(String ticker, double quantity, String purchaseDate)
       throws IllegalArgumentException {
     if (LocalDate.parse(purchaseDate).isAfter(LocalDate.now())) {
       throw new IllegalArgumentException(

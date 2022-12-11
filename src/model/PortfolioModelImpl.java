@@ -315,15 +315,15 @@ public class PortfolioModelImpl implements PortfolioModel {
           String qty = qtyItem.getTextContent();
 
           if (sellStockTicker.equals(ticker)) {
-            if (Integer.parseInt(sellStockQty) > Integer.parseInt(qty)) {
+            if (Double.parseDouble(sellStockQty) > Double.parseDouble(qty)) {
               item.removeChild(tickerItem);
               item.removeChild(qtyItem);
               item.removeChild(pDateItem);
-              sellStockQty = String.valueOf(Integer.parseInt(sellStockQty) - Integer.parseInt(qty));
+              sellStockQty = String.valueOf(Double.parseDouble(sellStockQty) - Double.parseDouble(qty));
               break;
-            } else if (Integer.parseInt(sellStockQty) < Integer.parseInt(qty)) {
+            } else if (Double.parseDouble(sellStockQty) < Double.parseDouble(qty)) {
               String updateQty = String.valueOf(
-                  Integer.parseInt(qty) - Integer.parseInt(sellStockQty));
+                      Double.parseDouble(qty) - Double.parseDouble(sellStockQty));
               qtyItem.setTextContent(updateQty);
               sellStockQty = String.valueOf(0);
             } else {
