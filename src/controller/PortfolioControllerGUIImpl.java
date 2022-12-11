@@ -407,19 +407,19 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
             changeQty.put(ticker, delta * -1);
           }
 
-          for(String ticker: changeQty.keySet()) {
-            double delta = changeQty.get(ticker);
-            if(delta >= 0) {
-              System.out.println("buying" + ticker + " : " + delta);
-              this.model.addStockToPortfolio(fileName, String.valueOf(portfolioCount),
-                      ticker, String.valueOf(delta), LocalDate.now().toString());
-            } else {
-              System.out.println("selling" + ticker + " : " + delta);
-              int qToSell = (int) Math.round(delta) * -1;
-//              this.model.totalSoldOnDate(ticker, "2022-12-07", qToSell);
-              this.model.sellStockFromPortfolio(fileName, portfolioChoice, ticker, Integer.toString(qToSell));
-            }
-          }
+//          for(String ticker: changeQty.keySet()) {
+//            double delta = changeQty.get(ticker);
+//            if(delta >= 0) {
+//              System.out.println("buying" + ticker + " : " + delta);
+//              this.model.addStockToPortfolio(fileName, String.valueOf(portfolioCount),
+//                      ticker, String.valueOf(delta), LocalDate.now().toString());
+//            } else {
+//              System.out.println("selling" + ticker + " : " + delta);
+//              int qToSell = (int) Math.round(delta) * -1;
+////              this.model.totalSoldOnDate(ticker, "2022-12-07", qToSell);
+//              this.model.sellStockFromPortfolio(fileName, portfolioChoice, ticker, Integer.toString(qToSell));
+//            }
+//          }
 
 
 

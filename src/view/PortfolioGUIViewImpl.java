@@ -643,26 +643,30 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
   public void getRebalanceWeightage(Set<String> tickers) {
     resetPanel();
     panel = panelCreator(mainPanelHeight);
-    panel.setLayout(new GridBagLayout());
-    GridBagConstraints gbc = new GridBagConstraints();
 
-    gbc.gridwidth = 2;
-    message = new JLabel("Please enter new weightages for stocks in your portfolio");
-    panel.add(message, gbc);
+    message = new JLabel("Please enter new weightages for stocks in the same order as " +
+            "they are displayed.");
+    panel.add(message);
 
-    String stocks = "";
+    message = new JLabel("Please enter amount separated by coma. Total must add up to 100.");
+    panel.add(message);
+
+    message = new JLabel("Ex- if it shows: 'Stocks: MSFT, AAPL', then enter '25.5, 74.4' for 25.5% MSFT and 74.5% AAPL");
+    panel.add(message);
+
+    String stocks = " ";
     for(String s : tickers) { stocks += ", " + s; }
-    message = new JLabel(stocks.substring(2));
-    gbc.gridx++;
-    panel.add(message, gbc);
+    message = new JLabel("Stocks: " + stocks.substring(2));
+    panel.add(message);
 
     rebalanceWeightages = new JTextField(50);
-    gbc.gridx++;
-    panel.add(rebalanceWeightages, gbc);
+    panel.add(rebalanceWeightages);
 
     JButton rebalanceBtn = buttonCreator("Rebalance", "Rebalance");
-    gbc.gridx++;
-    panel.add(rebalanceBtn, gbc);
+    panel.add(rebalanceBtn);
+
+    JButton goBackBtn = buttonCreator("Go Back", "Main Menu");
+    panel.add(goBackBtn);
 
     window.add(panel);
 

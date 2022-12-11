@@ -14,9 +14,6 @@
             <PurchaseDate1>2022-12-11</PurchaseDate1>
         </Portfolio1>
         <Portfolio2>
-            <ticker2>MSFT</ticker2>
-            <qty2>16</qty2>
-            <PurchaseDate2>2020-10-10</PurchaseDate2>
             <ticker2>AAPL</ticker2>
             <qty2>35.45301069217783</qty2>
             <PurchaseDate2>2022-12-11</PurchaseDate2>
