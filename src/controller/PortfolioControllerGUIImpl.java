@@ -372,6 +372,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         for(String ticker: currentStocks.keySet()) {
           System.out.println(ticker + "   " + currentStocks.get(ticker));
         }
+
         this.GUIView.getRebalanceWeightage(new ArrayList<>(currentStocks.keySet()));
 
 
@@ -393,7 +394,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
           Map<String, Double> expectedWeightage = new HashMap<>();
           for(String ticker: currentStocks.keySet()) {
             expectedWeightage.put(ticker, (Double.parseDouble(weightages[idx])/100) * totalValue);
-
+            System.out.println(ticker + " weight assigned: " + weightages[idx]);
             idx++;
           }
 
