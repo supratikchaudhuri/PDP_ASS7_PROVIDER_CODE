@@ -3,6 +3,7 @@ package view;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -202,6 +203,6 @@ public interface PortfolioGUIView {
    */
   int getDollarAmount();
 
-  void getRebalanceWeightage(Set<String> tickers);
+  void getRebalanceWeightage(List<String> tickers);
   String getRebalanceWeightage();
 }

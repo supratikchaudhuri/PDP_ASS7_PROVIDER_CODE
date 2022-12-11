@@ -1,5 +1,11 @@
 package controller;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -8,21 +14,20 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Scanner;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
+
 import model.Portfolio;
 import model.PortfolioModel;
 import model.StockImpl;
 import model.User;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 import utils.DataFetcher;
 import view.PortfolioView;
 
@@ -98,7 +103,7 @@ public class PortfolioControllerImpl implements PortfolioController {
         this.view.createPortfolioMenu();
         String createPortfolioOption = this.scanInput();
         while (Integer.parseInt(createPortfolioOption) > 2
-            || Integer.parseInt(createPortfolioOption) < 1) {
+                || Integer.parseInt(createPortfolioOption) < 1) {
           this.view.invalidResponse();
           this.view.viewPortfolioOptions();
           createPortfolioOption = this.scanInput();
@@ -137,7 +142,7 @@ public class PortfolioControllerImpl implements PortfolioController {
               }
 
               this.model.addStockToPortfolio(fileName, String.valueOf(portfolioCount),
-                  addStockTicker, addStockQty, addStockDate);
+                      addStockTicker, addStockQty, addStockDate);
             }
             if (addStockOptions.equals("2")) {
               this.view.addStockTicker();
@@ -154,7 +159,7 @@ public class PortfolioControllerImpl implements PortfolioController {
               String addStockDate = this.model.currentDate();
 
               this.model.addStockToPortfolio(fileName, String.valueOf(portfolioCount),
-                  addStockTicker, addStockQty, addStockDate);
+                      addStockTicker, addStockQty, addStockDate);
             }
             if (addStockOptions.equals("3")) {
               this.userOptions();
@@ -190,7 +195,7 @@ public class PortfolioControllerImpl implements PortfolioController {
         this.view.viewPortfolioOptions();
         String viewPortfolioOption = this.scanInput();
         while (Integer.parseInt(viewPortfolioOption) > 6
-            || Integer.parseInt(viewPortfolioOption) < 1) {
+                || Integer.parseInt(viewPortfolioOption) < 1) {
           this.view.invalidResponse();
           this.view.viewPortfolioOptions();
           viewPortfolioOption = this.scanInput();
@@ -229,7 +234,7 @@ public class PortfolioControllerImpl implements PortfolioController {
               }
 
               this.model.addStockToPortfolio(fileName, choosePortfolio, addStockTicker, addStockQty,
-                  addStockDate);
+                      addStockDate);
             }
             if (addStockOptions.equals("2")) {
               this.view.addStockTicker();
@@ -246,7 +251,7 @@ public class PortfolioControllerImpl implements PortfolioController {
               String addStockDate = this.model.currentDate();
 
               this.model.addStockToPortfolio(fileName, choosePortfolio, addStockTicker, addStockQty,
-                  addStockDate);
+                      addStockDate);
             }
             if (addStockOptions.equals("3")) {
               this.userOptions();
@@ -277,7 +282,7 @@ public class PortfolioControllerImpl implements PortfolioController {
               sellStockQty = this.scanInput();
             }
             boolean valid = this.model.checkIfStockInPortfolio(fileName, choosePortfolio,
-                sellStockTicker, sellStockQty);
+                    sellStockTicker, sellStockQty);
             while (!valid) {
               this.view.invalidResponse();
               this.view.sellStockTicker();
@@ -285,7 +290,7 @@ public class PortfolioControllerImpl implements PortfolioController {
               this.view.sellStockQty();
               sellStockQty = this.scanInput();
               valid = this.model.checkIfStockInPortfolio(fileName, choosePortfolio, sellStockTicker,
-                  sellStockQty);
+                      sellStockQty);
             }
 
             this.view.displayCustom("Would you like to add a sell date? (y/n)");
@@ -312,7 +317,7 @@ public class PortfolioControllerImpl implements PortfolioController {
             double commissionRate = Double.parseDouble(this.scanInput());
 
             this.model.sellStockFromPortfolio(fileName, choosePortfolio, sellStockTicker,
-                sellStockQty);
+                    sellStockQty);
 
             NumberFormat formatter = NumberFormat.getCurrencyInstance();
             BigDecimal total = new BigDecimal(price).multiply(new BigDecimal(sellStockQty));
@@ -321,7 +326,7 @@ public class PortfolioControllerImpl implements PortfolioController {
             this.view.displayCustom("Total gain: " + formatter.format(total));
             this.view.displayCustom("Commission: " + formatter.format(commission));
             this.view.displayCustom("After commission: " + formatter.format(
-                total.subtract(BigDecimal.valueOf(commission))));
+                    total.subtract(BigDecimal.valueOf(commission))));
             this.view.soldStocks(sellStockTicker, sellStockQty);
             int stockCount = this.model.getStockCount(fileName, choosePortfolio);
             if (stockCount > 0) {
@@ -381,7 +386,7 @@ public class PortfolioControllerImpl implements PortfolioController {
           }
 
           this.view.displayCustom(
-              this.model.getMonthlyPerformance(currentPortfolio, startDate, endDate));
+                  this.model.getMonthlyPerformance(currentPortfolio, startDate, endDate));
           this.userOptions();
         }
 
@@ -403,14 +408,45 @@ public class PortfolioControllerImpl implements PortfolioController {
           double commissionRate = Double.parseDouble(this.scanInput());
 
           this.view.displayCustom(
-              this.model.costBasis(currentPortfolio, costBasisDate, commissionRate));
+                  this.model.costBasis(currentPortfolio, costBasisDate, commissionRate));
         }
 
         // re-balance
-        if(viewPortfolioOption.equals("6")) {
-          this.view.displayCustom("Enter date to re-balance on (YYYY-MM-DD : ");
-          LocalDate date = LocalDate.parse(this.scanInput());
-          System.out.println(currentPortfolio.getListOfStocks());
+        if (viewPortfolioOption.equals("6")) {
+          Map<String, BigDecimal> currStocks = currentPortfolio.getListOfStocks();
+          Map<String, Double> weights;
+          boolean is100;
+          do {
+            is100 = true;
+            weights = new HashMap<>();
+            double totalW = 0.0;
+            this.view.displayCustom("Stocks in this portfolio = " + currStocks.keySet());
+            for (String ticker : currStocks.keySet()) {
+              this.view.displayCustom("Enter weightage for " + ticker + " : ");
+              double weightage = Double.parseDouble(scanInput());
+              totalW += weightage;
+              weights.put(ticker, weightage);
+            }
+            if (totalW != 100.0) {
+              this.view.displayCustom("\nTotal weightage has to be 100%. Enter again\n");
+              is100 = false;
+            }
+          } while (!is100);
+
+          int portfolioValue = this.model.getCurrentValue(currentPortfolio);
+          for (String ticker : currStocks.keySet()) {
+            BigDecimal price = new BigDecimal(DataFetcher.fetchToday(ticker));
+            double value = price.multiply(currStocks.get(ticker)).doubleValue();
+            double expectedValue = (weights.get(ticker) / 100.0) * portfolioValue;
+            double delta = value - expectedValue;
+            if (delta > 0) {
+              String qty = Double.toString(delta / price.doubleValue());
+              this.model.sellStockFromPortfolio(fileName, choosePortfolio, ticker, qty);
+            } else if (delta < 0) {
+              String qty = Double.toString(-delta / price.doubleValue());
+              this.model.addStockToPortfolio(fileName, choosePortfolio, ticker, qty, LocalDate.now().toString());
+            }
+          }
         }
 
         if (viewPortfolioOption.equals("7")) {
@@ -478,13 +514,13 @@ public class PortfolioControllerImpl implements PortfolioController {
         for (int j = 0; j < (item.getChildNodes().getLength() / 3); j++) {
           Element element = (Element) node;
           String ticker = element.getElementsByTagName("ticker" + choosePortfolio).item(j)
-              .getTextContent();
+                  .getTextContent();
           String qty = element.getElementsByTagName("qty" + choosePortfolio).item(j)
-              .getTextContent();
+                  .getTextContent();
           String pDate = element.getElementsByTagName("PurchaseDate" + choosePortfolio).item(j)
-              .getTextContent();
+                  .getTextContent();
 
-          stockData.push(new StockImpl(ticker, Integer.parseInt(qty), pDate));
+          stockData.push(new StockImpl(ticker, Double.parseDouble(qty), pDate));
         }
       }
     } catch (XPathExpressionException

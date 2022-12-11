@@ -640,7 +640,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
   }
 
   @Override
-  public void getRebalanceWeightage(Set<String> tickers) {
+  public void getRebalanceWeightage(java.util.List<String> tickers) {
     resetPanel();
     panel = panelCreator(mainPanelHeight);
     panel.setLayout(new GridBagLayout());

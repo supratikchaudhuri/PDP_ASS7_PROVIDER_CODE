@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<UserData>
+    <User username="rand">
+        <count>2</count>
+        <Portfolio1>
+            <ticker1>goog</ticker1>
+            <qty1>99.98925539916192</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>aapl</ticker1>
+            <qty1>48.99296567248171</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>msft</ticker1>
+            <qty1>60.694931138456525</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>jnj</ticker1>
+            <qty1>36.99430977580518</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>goog</ticker1>
+            <qty1>60.05963253465134</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>aapl</ticker1>
+            <qty1>55.788618458075405</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>jnj</ticker1>
+            <qty1>47.7658472743826</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+        </Portfolio1>
+        <Portfolio2>
+            <ticker2>GOOG</ticker2>
+            <qty2>100</qty2>
+            <PurchaseDate2>2022-12-11</PurchaseDate2>
+            <ticker2>AAPL</ticker2>
+            <qty2>49</qty2>
+            <PurchaseDate2>2022-12-11</PurchaseDate2>
+            <ticker2>MSFT</ticker2>
+            <qty2>61.0</qty2>
+            <PurchaseDate2>2022-12-11</PurchaseDate2>
+            <ticker2>JNJ</ticker2>
+            <qty2>37</qty2>
+            <PurchaseDate2>2022-12-11</PurchaseDate2>
+            <ticker2>GOOG</ticker2>
+            <qty2>60.05963253465134</qty2>
+            <PurchaseDate2>2022-12-11</PurchaseDate2>
+            <ticker2>AAPL</ticker2>
+            <qty2>55.788618458075405</qty2>
+            <PurchaseDate2>2022-12-11</PurchaseDate2>
+            <ticker2>JNJ</ticker2>
+            <qty2>47.7658472743826</qty2>
+            <PurchaseDate2>2022-12-11</PurchaseDate2>
+        </Portfolio2>
+    </User>
+</UserData>

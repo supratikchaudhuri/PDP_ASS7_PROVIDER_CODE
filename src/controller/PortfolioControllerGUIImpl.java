@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
@@ -371,7 +372,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         for(String ticker: currentStocks.keySet()) {
           System.out.println(ticker + "   " + currentStocks.get(ticker));
         }
-        this.GUIView.getRebalanceWeightage(currentStocks.keySet());
+        this.GUIView.getRebalanceWeightage(new ArrayList<>(currentStocks.keySet()));
 
 
       case "Rebalance":
