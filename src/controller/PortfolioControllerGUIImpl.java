@@ -424,6 +424,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
 
 
         }
+        break;
 
 
 
