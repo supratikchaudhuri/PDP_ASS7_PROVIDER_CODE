@@ -220,8 +220,8 @@ public class PortfolioImpl implements Portfolio {
    * @param total  the total value of stocks being sold.
    * @param stock  the current StockImpl from the stocks in this portfolio.
    */
-  private void confirmSold(String ticker, int qty, StringBuilder result, AtomicBoolean sold,
-                           AtomicReference<BigDecimal> total, StockImpl stock) {
+  private void confirmSold(String ticker, int qty, StringBuilder result,
+                           AtomicBoolean sold, AtomicReference<BigDecimal> total, StockImpl stock) {
 
     NumberFormat formatter = NumberFormat.getCurrencyInstance();
 
@@ -232,8 +232,7 @@ public class PortfolioImpl implements Portfolio {
     result.append("Sold " + qty + " shares of " + ticker + " for a price of: " + formatter.format(
             total.get()));
     result.append(
-            "\nCommission fee of " + (this.commissionRate * 100) + "% totaling: "
-                    + formatter.format(
+            "\nCommission fee of " + (this.commissionRate * 100) + "% totaling: " + formatter.format(
                     commission));
 
     sold.set(true);
@@ -279,8 +278,7 @@ public class PortfolioImpl implements Portfolio {
       });
       int monthlyTotal = total.intValue();
       result.append(
-              currentMonth.getMonth().toString().substring(0, 3) + " "
-                      + currentMonth.getYear() + ": ");
+              currentMonth.getMonth().toString().substring(0, 3) + " " + currentMonth.getYear() + ": ");
       result.append("*".repeat(monthlyTotal / 1000) + "\n");
       currentMonth = currentMonth.plusMonths(1);
     }
@@ -290,8 +288,7 @@ public class PortfolioImpl implements Portfolio {
     String endMonthAndYear =
             LocalDate.parse(end).getMonth().toString() + " " + LocalDate.parse(end).getYear();
     result.insert(0,
-            "Monthly Performance of Portfolio from " + startMonthAndYear + " to "
-                    + endMonthAndYear
+            "Monthly Performance of Portfolio from " + startMonthAndYear + " to " + endMonthAndYear
                     + "\n");
 
     result.append("\nScale: * = $1,000");
@@ -332,8 +329,7 @@ public class PortfolioImpl implements Portfolio {
 
       if (total.intValue() != 0) {
         result.append(
-                current.getMonth().toString().substring(0, 3) + " "
-                        + current.getDayOfMonth() + ": ");
+                current.getMonth().toString().substring(0, 3) + " " + current.getDayOfMonth() + ": ");
         result.append("*".repeat(total.intValue() / 1000) + "\n");
       }
 
@@ -341,8 +337,7 @@ public class PortfolioImpl implements Portfolio {
     }
 
     result.insert(0,
-            "Daily Performance of Portfolio from " + firstOfMonth
-                    + " to " + endOfMonth.minusDays(1)
+            "Daily Performance of Portfolio from " + firstOfMonth + " to " + endOfMonth.minusDays(1)
                     + "\n");
     result.append("\nScale: * = $1,000");
     return result.toString();

@@ -6,8 +6,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -18,14 +17,7 @@ import java.time.Month;
 import java.util.HashMap;
 import java.util.Set;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-
-
+import javax.swing.*;
 
 /**
  * This class is an implementation of the PortfolioGUIView and offers the user a visual
@@ -47,6 +39,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
   private JTextField stockDate;
   private JTextField stockWeight;
   private JTextField dollarAmount;
+
   private JTextField rebalanceWeightages;
   private JButton login;
   private int quantity;
@@ -135,8 +128,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     resetPanel();
 
     JPanel newPanel = panelCreator(mainPanelHeight);
-    newPanel.add(new JLabel("<html>" + "No account was found under this username."
-            + "<br> <br>" +
+    newPanel.add(new JLabel("<html>" + "No account was found under this username." + "<br> <br>" +
             "Would you like create a new account with this username? </html>"));
 
     buttonPanel = panelCreator(buttonPanelHeight);
@@ -158,8 +150,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     resetPanel();
 
     JPanel newPanel = panelCreator(mainPanelHeight);
-    newPanel.add(new JLabel("<html> Hello, " + this.getUsernameInputString()
-            + "! <br> <br>" +
+    newPanel.add(new JLabel("<html> Hello, " + this.getUsernameInputString() + "! <br> <br>" +
             "What would you like to do today? </html>"));
 
     buttonPanel = panelCreator(buttonPanelHeight);
@@ -470,8 +461,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
 
     for (int i = 1; i <= performance.length; i++) {
       Month month = Month.of(12 - (performance.length - i));
-      dataset.addValue(performance[i - 1], "Row",
-              month.toString().substring(0, 3).toUpperCase());
+      dataset.addValue(performance[i - 1], "Row", month.toString().substring(0, 3).toUpperCase());
     }
 
     JFreeChart barChart = ChartFactory.createBarChart("Performance over "
@@ -659,8 +649,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     message = new JLabel("Please enter amount separated by comma. Total must add up to 100%.");
     panel.add(message);
 
-    message = new JLabel("Ex- if it shows: 'Stocks: MSFT, AAPL', then enter '25.5,74.4' " +
-            "for 25.5% MSFT and 74.5% AAPL");
+    message = new JLabel("Ex- if it shows: 'Stocks: MSFT, AAPL', then enter '25.5,74.4' for 25.5% MSFT and 74.5% AAPL");
     panel.add(message);
 
     StringBuilder stocks = new StringBuilder(" ");

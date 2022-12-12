@@ -41,12 +41,13 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
   private final PortfolioGUIView GUIView;
   private User currentUser;
   private String fileName;
+  private int maxWeight;
+  private String username;
   private String ticker;
-//  private String username;
-//  private String qty;
-//  private String date;
-//  private String tickerSell;
-//  private String qtySell;
+  private String qty;
+  private String date;
+  private String tickerSell;
+  private String qtySell;
 
   /**
    * Instantiates a new PortfolioControllerGUIImpl.
@@ -77,14 +78,14 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
     String portfolioChoice = "";
     int portfolioCount = 0;
     HashMap<String, Integer> stockWeights = new HashMap<>();
-    int maxWeight = 100;
+//    int maxWeight = 100;
 //    double maxQty = 0;
-    String username = "";
+//    String username = "";
 //    String ticker = "";
-    String qty = "";
-    String date = "";
-    String tickerSell = "";
-    String qtySell = "";
+//    String qty = "";
+//    String date = "";
+//    String tickerSell = "";
+//    String qtySell = "";
 
     System.out.println("Action: " + e.getActionCommand());
     switch (e.getActionCommand()) {
@@ -372,7 +373,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         }
 
         this.GUIView.getRebalanceWeightage(currentStocks.keySet());
-        break;
+
 
       case "Rebalance":
         String weightageString = this.GUIView.getRebalanceWeightage();
@@ -389,8 +390,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
           for (String ticker : currentStocks.keySet()) {
             weights.put(ticker, Double.parseDouble(weightages[j++]));
           }
-          this.model.rebalance(currentPortfolio, currentStocks, weights, fileName,
-                  portfolioChoice, LocalDate.now());
+          this.model.rebalance(currentPortfolio, currentStocks, weights, fileName, portfolioChoice, LocalDate.now());
         }
         break;
 
