@@ -424,6 +424,11 @@ public class PortfolioControllerImpl implements PortfolioController {
             for (String ticker : currStocks.keySet()) {
               this.view.displayCustom("Enter weightage for " + ticker + " : ");
               double weightage = Double.parseDouble(scanInput());
+              while (weightage <= 0.0) {
+                this.view.displayCustom("\nWeightage should be > 0\n");
+                this.view.displayCustom("\nEnter weightage for " + ticker + " : ");
+                weightage = Double.parseDouble(scanInput());
+              }
               totalW += weightage;
               weights.put(ticker, weightage);
             }
@@ -432,22 +437,7 @@ public class PortfolioControllerImpl implements PortfolioController {
               is100 = false;
             }
           } while (!is100);
-
-          double portfolioValue = this.model.getCurrentValue(currentPortfolio);
-
-          for (String ticker : currStocks.keySet()) {
-            BigDecimal price = new BigDecimal(DataFetcher.fetchToday(ticker));
-            double value = price.multiply(currStocks.get(ticker)).doubleValue();
-            double expectedValue = (weights.get(ticker) / 100.0) * portfolioValue;
-            double delta = value - expectedValue;
-            if (delta > 0) {
-              String qty = Double.toString(delta / price.doubleValue());
-              this.model.sellStockFromPortfolio(fileName, choosePortfolio, ticker, qty);
-            } else if (delta < 0) {
-              String qty = Double.toString(-delta / price.doubleValue());
-              this.model.addStockToPortfolio(fileName, choosePortfolio, ticker, qty, LocalDate.now().toString());
-            }
-          }
+          this.model.rebalance(currentPortfolio, currStocks, weights, fileName, choosePortfolio);
         }
 
         if (viewPortfolioOption.equals("7")) {

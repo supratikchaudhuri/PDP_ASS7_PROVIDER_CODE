@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<UserData>
+    <User username="test">
+        <count>1</count>
+        <Portfolio1>
+            <ticker1>goog</ticker1>
+            <qty1>100</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>aapl</ticker1>
+            <qty1>49</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>msft</ticker1>
+            <qty1>60.70024855350012</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>jnj</ticker1>
+            <qty1>37</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>goog</ticker1>
+            <qty1>60.06290963790696</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>aapl</ticker1>
+            <qty1>55.79076392796849</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>jnj</ticker1>
+            <qty1>47.76758279276203</qty1>
+            <PurchaseDate1>2022-12-11</PurchaseDate1>
+        </Portfolio1>
+    </User>
+</UserData>

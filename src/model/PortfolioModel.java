@@ -1,14 +1,18 @@
 package model;
 
+import org.w3c.dom.Document;
+
 import java.io.IOException;
 import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.time.Month;
 import java.util.Deque;
 import java.util.HashMap;
+import java.util.Map;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPathExpressionException;
-import org.w3c.dom.Document;
 
 /**
  * This interface represents the Model of the application's MVC design. It conducts all the
@@ -109,7 +113,7 @@ public interface PortfolioModel {
    * @param addStockDate    purchase date.
    */
   void addStockToPortfolio(String filename, String choosePortfolio, String addStockTicker,
-      String addStockQty, String addStockDate);
+                           String addStockQty, String addStockDate);
 
   /**
    * Returns the current date.
@@ -135,7 +139,7 @@ public interface PortfolioModel {
    * @param sellStockQty    the quantity user is selling.
    */
   boolean checkIfStockInPortfolio(String filename, String choosePortfolio, String sellStockTicker,
-      String sellStockQty);
+                                  String sellStockQty);
 
   /**
    * Sell stocks from the portfolio.
@@ -146,7 +150,7 @@ public interface PortfolioModel {
    * @param sellStockQty    the quantity user is selling.
    */
   void sellStockFromPortfolio(String filename, String choosePortfolio, String sellStockTicker,
-      String sellStockQty);
+                              String sellStockQty);
 
   /**
    * Get stock count.
@@ -194,7 +198,7 @@ public interface PortfolioModel {
    * @param choosePortfolio the portfolio number.
    */
   void portfolioDCA(HashMap<String, Integer> stockWeights, int dollars, String filename,
-      String choosePortfolio);
+                    String choosePortfolio);
 
   boolean validateTicker(String ticker);
 
@@ -226,5 +230,6 @@ public interface PortfolioModel {
    */
   String totalSoldOnDate(String ticker, String date, int qty);
 
-  void rebalance();
+  void rebalance(Portfolio currentPortfolio, Map<String, BigDecimal> currStocks,
+                 Map<String, Double> weights, String fileName, String choosePortfolio);
 }

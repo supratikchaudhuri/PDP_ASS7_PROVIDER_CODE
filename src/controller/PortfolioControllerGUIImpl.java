@@ -1,5 +1,11 @@
 package controller;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -8,28 +14,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
+
 import model.Portfolio;
 import model.PortfolioModel;
 import model.StockImpl;
 import model.User;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
-import utils.DataFetcher;
 import view.PortfolioGUIView;
 
 /**
@@ -167,11 +166,11 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
       case "Add Stock to Panel":
         // Checks if ticker and weight have been entered and if the weight is valid.
         if (this.GUIView.getStockTickerInputString().equals("Enter ticker ...")
-            || String.valueOf(this.GUIView.getStockWeight()).equals("Enter weight ...")) {
+                || String.valueOf(this.GUIView.getStockWeight()).equals("Enter weight ...")) {
           break;
         }
         if (this.GUIView.getStockWeight() > maxWeight
-            || this.GUIView.getStockWeight() == 0) {
+                || this.GUIView.getStockWeight() == 0) {
           break;
         }
 
@@ -179,7 +178,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         maxWeight = maxWeight - this.GUIView.getStockWeight();
 
         stockWeights.put(this.GUIView.getStockTickerInputString().toUpperCase(),
-            this.GUIView.getStockWeight());
+                this.GUIView.getStockWeight());
         this.GUIView.addStockToPanel();
 
         break;
@@ -187,12 +186,12 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
       // Performs final check and prompts user for dollar amount to invest.
       case "Finish DCA Stock Collect":
         if (!this.GUIView.getStockTickerInputString().equals("Enter ticker ...")
-            && !String.valueOf(this.GUIView.getStockWeight()).equals("Enter weight ...")
-            && this.GUIView.getStockWeight() != 0) {
+                && !String.valueOf(this.GUIView.getStockWeight()).equals("Enter weight ...")
+                && this.GUIView.getStockWeight() != 0) {
           maxWeight = maxWeight - this.GUIView.getStockWeight();
 
           stockWeights.put(this.GUIView.getStockTickerInputString().toUpperCase(),
-              this.GUIView.getStockWeight());
+                  this.GUIView.getStockWeight());
         }
         // Will not finish unless 100% weight is reached.
         AtomicInteger max = new AtomicInteger(100);
@@ -248,7 +247,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
       // Defaults the stock purchase date to today.
       case "Add Default Date":
         this.model.addStockToPortfolio(fileName, String.valueOf(portfolioCount), ticker, qty,
-            LocalDate.now().toString());
+                LocalDate.now().toString());
         this.GUIView.addAnotherStock();
         break;
 
@@ -257,7 +256,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         date = this.GUIView.getStockDateInputString();
         if (this.model.dateValidation(date)) {
           this.model.addStockToPortfolio(fileName, String.valueOf(portfolioCount), ticker, qty,
-              date);
+                  date);
           this.GUIView.addAnotherStock();
           break;
         }
@@ -294,7 +293,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
       // Gets a list of the stocks within the current portfolio and prompts the user to select one.
       case "Sell Stock Start":
         this.GUIView.sellStockSelection(
-            this.showPortfolio(String.valueOf(portfolioCount)).getListOfStocks());
+                this.showPortfolio(String.valueOf(portfolioCount)).getListOfStocks());
         break;
 
       // Gets the selected stock and then prompts user to select a quantity.
@@ -316,8 +315,8 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         if (this.model.dateValidation(this.GUIView.getStockDateInputString())) {
           this.model.sellStockFromPortfolio(fileName, portfolioChoice, tickerSell, qtySell);
           String sellValue = this.model.totalSoldOnDate(tickerSell,
-              this.GUIView.getStockDateInputString(),
-              Integer.parseInt(qtySell));
+                  this.GUIView.getStockDateInputString(),
+                  Integer.parseInt(qtySell));
           this.GUIView.confirmSold(sellValue);
           break;
         }
@@ -335,11 +334,11 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         String inputDate = this.GUIView.getStockDateInputString();
         if (this.model.dateValidation(inputDate)) {
           this.GUIView.displayCostBasis(
-              this.model.costBasis(
-                  this.showPortfolio(portfolioChoice),
-                  date,
-                  0
-              )
+                  this.model.costBasis(
+                          this.showPortfolio(portfolioChoice),
+                          date,
+                          0
+                  )
           );
           break;
         }
@@ -361,7 +360,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         while (i >= 1) {
           LocalDate temp = LocalDate.now().minusMonths(i);
           performance[Math.abs(i - Integer.parseInt(timeframe) + 1)] = this.model
-              .getMonthlyTotalValue(temp.getMonth(), portfolioChoice, fileName);
+                  .getMonthlyTotalValue(temp.getMonth(), portfolioChoice, fileName);
           i -= 1;
         }
         performance[Integer.parseInt(timeframe) - 1] = currentValue;
@@ -370,8 +369,8 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
 
       case "Rebalance Portfolio":
         currentPortfolio = this.showPortfolio(portfolioChoice);
-        Map<String, BigDecimal> currentStocks= currentPortfolio.getListOfStocks();
-        for(String ticker: currentStocks.keySet()) {
+        Map<String, BigDecimal> currentStocks = currentPortfolio.getListOfStocks();
+        for (String ticker : currentStocks.keySet()) {
           System.out.println(ticker + "   " + currentStocks.get(ticker));
         }
 
@@ -380,7 +379,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
 
       case "Rebalance":
         String weightageString = this.GUIView.getRebalanceWeightage();
-        if(weightageString.length() > 0) {
+        if (weightageString.length() > 0) {
           System.out.println(weightageString);
           currentPortfolio = this.showPortfolio(portfolioChoice);
 
@@ -390,24 +389,10 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
 
           Map<String, Double> weights = new HashMap<>();
           int j = 0;
-          for(String ticker : currentStocks.keySet()) {
+          for (String ticker : currentStocks.keySet()) {
             weights.put(ticker, Double.parseDouble(weightages[j++]));
           }
-
-          double portfolioValue = this.model.getCurrentValue(currentPortfolio);
-          for (String ticker : currentStocks.keySet()) {
-            BigDecimal price = new BigDecimal(DataFetcher.fetchToday(ticker));
-            double value = price.multiply(currentStocks.get(ticker)).doubleValue();
-            double expectedValue = (weights.get(ticker) / 100.0) * portfolioValue;
-            double delta = value - expectedValue;
-            if (delta > 0) {
-              String qty = Double.toString(delta / price.doubleValue());
-              this.model.sellStockFromPortfolio(fileName, portfolioChoice, ticker, qty);
-            } else if (delta < 0) {
-              String qty = Double.toString(-delta / price.doubleValue());
-              this.model.addStockToPortfolio(fileName, portfolioChoice, ticker, qty, LocalDate.now().toString());
-            }
-          }
+          this.model.rebalance(currentPortfolio, currentStocks, weights, fileName, portfolioChoice);
         }
         break;
 
@@ -441,11 +426,11 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
         for (int j = 0; j < (item.getChildNodes().getLength() / 3); j++) {
           Element element = (Element) node;
           String ticker = element.getElementsByTagName("ticker" + choosePortfolio).item(j)
-              .getTextContent();
+                  .getTextContent();
           String qty = element.getElementsByTagName("qty" + choosePortfolio).item(j)
-              .getTextContent();
+                  .getTextContent();
           String pDate = element.getElementsByTagName("PurchaseDate" + choosePortfolio).item(j)
-              .getTextContent();
+                  .getTextContent();
 
           stockData.push(new StockImpl(ticker, qty, pDate));
         }
