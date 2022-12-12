@@ -37,7 +37,8 @@
 
     - Although we did write the code for re-balancing on a specific date, we have commented it out (
       in `PortfolioControllerImpl` class) since we can show our algorithm works correctly for
-      today's date only.
+      today's date only. If they fix their sell method, we can uncomment that part of the code and
+      re-balancing on a particular date will start working.
 
 
 2. Not complete accuracy in re-balancing. Fractional inaccuracy persists.
