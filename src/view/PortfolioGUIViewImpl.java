@@ -1,25 +1,23 @@
 package view;
 
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.math.BigDecimal;
-import java.time.Month;
-import java.util.HashMap;
-import java.util.Set;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
+import java.time.Month;
+import java.util.HashMap;
+import java.util.Set;
+
+import javax.swing.*;
 
 /**
  * This class is an implementation of the PortfolioGUIView and offers the user a visual
@@ -131,7 +129,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
 
     JPanel newPanel = panelCreator(mainPanelHeight);
     newPanel.add(new JLabel("<html>" + "No account was found under this username." + "<br> <br>" +
-        "Would you like create a new account with this username? </html>"));
+            "Would you like create a new account with this username? </html>"));
 
     buttonPanel = panelCreator(buttonPanelHeight);
 
@@ -153,7 +151,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
 
     JPanel newPanel = panelCreator(mainPanelHeight);
     newPanel.add(new JLabel("<html> Hello, " + this.getUsernameInputString() + "! <br> <br>" +
-        "What would you like to do today? </html>"));
+            "What would you like to do today? </html>"));
 
     buttonPanel = panelCreator(buttonPanelHeight);
 
@@ -268,8 +266,8 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     panel = panelCreator(mainPanelHeight);
 
     message = new JLabel("<html>Successfully added " + getStockQtyInputString()
-        + " shares of " + getStockTickerInputString().toUpperCase() + "!"
-        + "<br><br>Would you like to add another stock?</html>");
+            + " shares of " + getStockTickerInputString().toUpperCase() + "!"
+            + "<br><br>Would you like to add another stock?</html>");
 
     buttonPanel = panelCreator(buttonPanelHeight);
 
@@ -290,7 +288,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     panel = panelCreator(mainPanelHeight);
 
     message = new JLabel("<html>You have " + portfolioCount + " portfolios.<br><br>"
-        + "Please select one.</html>");
+            + "Please select one.</html>");
 
     dropDownMenu = new JComboBox<>();
 
@@ -319,7 +317,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     panel = panelCreator(mainPanelHeight);
 
     message = new JLabel("<html>" + portfolio.replaceAll("\n", "<br>")
-        + "</html>");
+            + "</html>");
 
     buttonPanel = panelCreator(buttonPanelHeight);
 
@@ -419,7 +417,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     panel = panelCreator(mainPanelHeight);
 
     message = new JLabel("Successfully sold " + quantity + " shares of "
-        + ticker + " for a total of " + value);
+            + ticker + " for a total of " + value);
 
     buttonPanel = panelCreator(buttonPanelHeight);
 
@@ -467,14 +465,14 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     }
 
     JFreeChart barChart = ChartFactory.createBarChart("Performance over "
-            + timeframe + " Months",
-        "Month",
-        "Performance ($USD)",
-        dataset,
-        PlotOrientation.VERTICAL,
-        false,
-        true,
-        false);
+                    + timeframe + " Months",
+            "Month",
+            "Performance ($USD)",
+            dataset,
+            PlotOrientation.VERTICAL,
+            false,
+            true,
+            false);
 
     ChartPanel chartPanel = new ChartPanel(barChart);
     chartPanel.setDomainZoomable(true);
@@ -517,9 +515,9 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     panel = panelCreator(mainPanelHeight);
 
     message = new JLabel("<html>"
-        + "Cost Basis: <br>"
-        + cost.replaceAll("\n", "<br>")
-        + "</html>");
+            + "Cost Basis: <br>"
+            + cost.replaceAll("\n", "<br>")
+            + "</html>");
 
     buttonPanel = panelCreator(buttonPanelHeight);
     JButton mainMenuButton = buttonCreator("Main Menu", "Main Menu");
@@ -536,7 +534,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     panel = panelCreator(mainPanelHeight);
 
     message = new JLabel("<html>Please choose a stock and assign a % weight to it:"
-        + "<br><br>**Total weight needs to equal 100%**</html>");
+            + "<br><br>**Total weight needs to equal 100%**</html>");
 
     stockTicker = new JTextField(5);
     stockTicker.setText("Enter ticker ...");
@@ -566,7 +564,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     panel.remove(buttonPanel);
 
     panel.add(new JLabel("Ticker: " + this.getStockTickerInputString().toUpperCase()
-        + "  Weight: " + this.getStockWeight()));
+            + "  Weight: " + this.getStockWeight()));
 
     panel.remove(stockTicker);
     panel.remove(stockWeight);
@@ -617,8 +615,8 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     panel = panelCreator(mainPanelHeight);
 
     message = new JLabel("<html>"
-        + portfolio.replaceAll("\n", "<br>")
-        + "</html>");
+            + portfolio.replaceAll("\n", "<br>")
+            + "</html>");
 
     buttonPanel = panelCreator(buttonPanelHeight);
     JButton menuButton = buttonCreator("Main Menu", "Main Menu");
@@ -648,18 +646,28 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
             "they are displayed.");
     panel.add(message);
 
-    message = new JLabel("Please enter amount separated by coma. Total must add up to 100.");
+    message = new JLabel("Please enter amount separated by comma. Total must add up to 100%.");
     panel.add(message);
 
-    message = new JLabel("Ex- if it shows: 'Stocks: MSFT, AAPL', then enter '25.5, 74.4' for 25.5% MSFT and 74.5% AAPL");
+    message = new JLabel("Ex- if it shows: 'Stocks: MSFT, AAPL', then enter '25.5,74.4' for 25.5% MSFT and 74.5% AAPL");
     panel.add(message);
 
-    String stocks = " ";
-    for(String s : tickers) { stocks += ", " + s; }
+    StringBuilder stocks = new StringBuilder(" ");
+    for (String s : tickers) {
+      stocks.append(", ").append(s);
+    }
     message = new JLabel("Stocks: " + stocks.substring(2));
     panel.add(message);
 
     rebalanceWeightages = new JTextField(50);
+
+    rebalanceWeightages.addKeyListener(new KeyAdapter() {
+      public void keyPressed(KeyEvent key) {
+        rebalanceWeightages.setEditable((key.getKeyChar() >= '0' && key.getKeyChar() <= '9')
+                || key.getKeyCode() == 8 || key.getKeyChar() == ',' || key.getKeyChar() == '.');
+      }
+    });
+
     panel.add(rebalanceWeightages);
 
     JButton rebalanceBtn = buttonCreator("Rebalance", "Rebalance");
