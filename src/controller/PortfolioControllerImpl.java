@@ -19,6 +19,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -462,11 +463,22 @@ public class PortfolioControllerImpl implements PortfolioController {
                   || date.getDayOfWeek().toString().equalsIgnoreCase("SUNDAY")) {
             date = date.minusDays(1);
           }
-          this.model.rebalance(currentPortfolio, currStocks, weights,
+          Map<String, Double> expectedValuesMap = this.model.rebalance(currentPortfolio, currStocks, weights,
                   fileName, choosePortfolio, date);
-          currentPortfolio = this.showPortfolio(choosePortfolio);
-          String ans = currentPortfolio.getPortfolioByDate(date.toString(), 0);
-          this.view.displayCustom(ans);
+//          currentPortfolio = this.showPortfolio(choosePortfolio);
+//          String ans = currentPortfolio.getPortfolioByDate(date.toString(), 0);
+//          this.view.displayCustom(ans);
+
+          this.view.displayCustom("This is your new balanced portfolio");
+
+          double total = 0;
+
+          for(String ticker: expectedValuesMap.keySet()) {
+            total += expectedValuesMap.get(ticker);
+            this.view.displayCustom("Ticker: " + ticker + " Values : $" + expectedValuesMap.get(ticker));
+          }
+
+          this.view.displayCustom("Total Portfolio Value: $" + total);
         }
 
         if (viewPortfolioOption.equals("7")) {

@@ -48,9 +48,9 @@ The program should start in the terminal. Follow the instruction displayed to us
 
 
 
-### How to analyze the result of balancing
+# How to analyze the result of balancing
 
-- After you have rebalance the portfolio in the GUI, you should see the success message dialogue box. After that go to main menu and
+- After you have balance the portfolio in the GUI, you should see the success message dialogue box. After that go to main menu and
 choose to view the portfolio that you just rebalanced.
 
 - Here you'll see that some stocks are listed multiple times. This is because the provider's code does not accumulate stocks with same ticker.

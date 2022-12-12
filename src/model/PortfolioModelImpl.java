@@ -481,7 +481,7 @@ public class PortfolioModelImpl implements PortfolioModel {
   }
 
   @Override
-  public void rebalance(Portfolio currentPortfolio, Map<String, BigDecimal> currStocks,
+  public Map<String, Double> rebalance(Portfolio currentPortfolio, Map<String, BigDecimal> currStocks,
                         Map<String, Double> weights, String fileName, String choosePortfolio,
                         LocalDate date) {
 
@@ -496,10 +496,13 @@ public class PortfolioModelImpl implements PortfolioModel {
 
     double portfolioValue = this.getCurrentValue(currentPortfolio);
 
+    Map<String, Double> expectedValuesMap = new HashMap<>();
+
     for (String ticker : currStocks.keySet()) {
       BigDecimal price = new BigDecimal(DataFetcher.fetchDate(ticker, date));
       double value = price.multiply(currStocks.get(ticker)).doubleValue();
       double expectedValue = (weights.get(ticker) / 100.0) * portfolioValue;
+      expectedValuesMap.put(ticker, expectedValue);
       double delta = value - expectedValue;
       if (delta > 0) {
         String qty = Double.toString(delta / price.doubleValue());
@@ -509,5 +512,7 @@ public class PortfolioModelImpl implements PortfolioModel {
         this.addStockToPortfolio(fileName, choosePortfolio, ticker, qty, date.toString());
       }
     }
+
+    return expectedValuesMap;
   }
 }
