@@ -215,4 +215,12 @@ public interface PortfolioGUIView {
    * @return weightages of the stock.
    */
   String getRebalanceWeightage();
+
+  /**
+   * Shows Shows a popup message in the GUI.
+   *
+   * @param msg   Message to be displayed.
+   * @param title title of dialog box.
+   */
+  void showPopupMsg(String msg, String title);
 }

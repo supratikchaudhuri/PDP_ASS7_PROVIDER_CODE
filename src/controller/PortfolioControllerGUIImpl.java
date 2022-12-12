@@ -64,6 +64,20 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
     this.model = model;
     this.GUIView = guiView;
     GUIView.setListener(this);
+
+    currentValue = 0.0;
+    portfolioChoice = "1";
+    portfolioCount = 1;
+    stockWeights = new HashMap<>();
+    maxWeight = 0;
+    maxQty = 0;
+    username = "";
+    ticker = "";
+    qty = "";
+    date = "";
+    tickerSell = "";
+    qtySell = "";
+
   }
 
   @Override
@@ -79,15 +93,15 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
 
   @Override
   public void actionPerformed(ActionEvent e) {
-//    HashMap<String, Integer> stockWeights = new HashMap<>();
-//    int maxWeight = 100;
-//    double maxQty = 0;
-//    String username = "";
-//    String ticker = "";
-//    String qty = "";
-//    String date = "";
-//    String tickerSell = "";
-//    String qtySell = "";
+    //    HashMap<String, Integer> stockWeights = new HashMap<>();
+    //    int maxWeight = 100;
+    //    double maxQty = 0;
+    //    String username = "";
+    //    String ticker = "";
+    //    String qty = "";
+    //    String date = "";
+    //    String tickerSell = "";
+    //    String qtySell = "";
 
     System.out.println("Action: " + e.getActionCommand());
     switch (e.getActionCommand()) {
@@ -370,17 +384,14 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
       case "Rebalance Portfolio":
         currentPortfolio = this.showPortfolio(portfolioChoice);
         Map<String, BigDecimal> currentStocks = currentPortfolio.getListOfStocks();
-        for (String ticker : currentStocks.keySet()) {
-          System.out.println(ticker + "   " + currentStocks.get(ticker));
-        }
 
         this.GUIView.getRebalanceWeightage(currentStocks.keySet());
+        break;
 
 
       case "Rebalance":
         String weightageString = this.GUIView.getRebalanceWeightage();
         if (weightageString.length() > 0) {
-          System.out.println(weightageString);
           currentPortfolio = this.showPortfolio(portfolioChoice);
 
           currentStocks = currentPortfolio.getListOfStocks();
@@ -389,11 +400,20 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
 
           Map<String, Double> weights = new HashMap<>();
           int j = 0;
+          double totalW = 0.0;
           for (String ticker : currentStocks.keySet()) {
-            weights.put(ticker, Double.parseDouble(weightages[j++]));
+            double w = Double.parseDouble(weightages[j++]);
+            weights.put(ticker, w);
+            totalW += w;
           }
-          this.model.rebalance(currentPortfolio, currentStocks, weights, fileName,
-                  portfolioChoice, LocalDate.now());
+          if (Math.abs(totalW - 100.0) > 0.01) {
+            this.GUIView.showPopupMsg("Total weightage needs to be 100%", "Warning");
+          } else {
+            this.model.rebalance(currentPortfolio, currentStocks, weights, fileName,
+                    portfolioChoice, LocalDate.now());
+            this.GUIView.showPopupMsg("Re-balancing successful! Go back to view" +
+                    " portfolio to see changes", "Sucess");
+          }
         }
         break;
 

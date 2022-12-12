@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 /**
  * This class is an implementation of the PortfolioGUIView and offers the user a visual
@@ -689,6 +690,11 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
   @Override
   public String getRebalanceWeightage() {
     return this.rebalanceWeightages.getText();
+  }
+
+  @Override
+  public void showPopupMsg(String msg, String title) {
+    JOptionPane.showMessageDialog(null, msg, title, 1);
   }
 
   /**

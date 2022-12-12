@@ -1,5 +1,11 @@
 package model;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,6 +24,7 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -31,11 +38,7 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+
 import utils.DataFetcher;
 
 /**
@@ -76,7 +79,7 @@ public class PortfolioModelImpl implements PortfolioModel {
 
   @Override
   public void createNewUserFile(String username, String fileName)
-      throws ParserConfigurationException {
+          throws ParserConfigurationException {
     DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
     DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
@@ -116,7 +119,7 @@ public class PortfolioModelImpl implements PortfolioModel {
       //Number of Portfolios
       Element eElement = (Element) node;
       int portfolioCount = Integer.parseInt(
-          eElement.getElementsByTagName("count").item(0).getTextContent());
+              eElement.getElementsByTagName("count").item(0).getTextContent());
       portfolioCount += 1;
 
       NodeList childNodes = node.getChildNodes();
@@ -162,7 +165,7 @@ public class PortfolioModelImpl implements PortfolioModel {
   public void trimWhiteSpaces(Document doc) throws XPathExpressionException {
     XPath xp = XPathFactory.newInstance().newXPath();
     NodeList nl = (NodeList) xp.evaluate("//text()[normalize-space(.)='']", doc,
-        XPathConstants.NODESET);
+            XPathConstants.NODESET);
     for (int j = 0; j < nl.getLength(); ++j) {
       Node temp = nl.item(j);
       temp.getParentNode().removeChild(temp);
@@ -191,7 +194,7 @@ public class PortfolioModelImpl implements PortfolioModel {
 
   @Override
   public void addStockToPortfolio(String filename, String choosePortfolio, String addStockTicker,
-      String addStockQty, String addStockDate) {
+                                  String addStockQty, String addStockDate) {
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     try (InputStream is = new FileInputStream(filename)) {
       DocumentBuilder db = dbf.newDocumentBuilder();
@@ -246,7 +249,7 @@ public class PortfolioModelImpl implements PortfolioModel {
 
   @Override
   public boolean checkIfStockInPortfolio(String filename, String choosePortfolio,
-      String sellStockTicker, String sellStockQty) {
+                                         String sellStockTicker, String sellStockQty) {
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     try (InputStream is = new FileInputStream(filename)) {
       DocumentBuilder db = dbf.newDocumentBuilder();
@@ -264,13 +267,13 @@ public class PortfolioModelImpl implements PortfolioModel {
         for (int i = 0; i < (item.getChildNodes().getLength() / 3); i++) {
           Element element = (Element) node;
           String ticker = element.getElementsByTagName("ticker" + choosePortfolio).item(i)
-              .getTextContent();
+                  .getTextContent();
           String qty = element.getElementsByTagName("qty" + choosePortfolio).item(i)
-              .getTextContent();
+                  .getTextContent();
 
           if (stockTable.containsKey(ticker)) {
             String totalQty = String.valueOf(
-                Integer.parseInt(stockTable.get(ticker)) + Integer.parseInt(qty));
+                    Integer.parseInt(stockTable.get(ticker)) + Integer.parseInt(qty));
             stockTable.replace(ticker, totalQty);
           } else {
             stockTable.put(ticker, qty);
@@ -279,7 +282,8 @@ public class PortfolioModelImpl implements PortfolioModel {
       }
 
       return stockTable.containsKey(sellStockTicker)
-          && Integer.parseInt(stockTable.get(sellStockTicker)) >= Integer.parseInt(sellStockQty);
+              && Integer.parseInt(stockTable.get(sellStockTicker)) >=
+              Integer.parseInt(sellStockQty);
 
     } catch (IOException
              | XPathExpressionException
@@ -291,7 +295,7 @@ public class PortfolioModelImpl implements PortfolioModel {
 
   @Override
   public void sellStockFromPortfolio(String filename, String choosePortfolio,
-      String sellStockTicker, String sellStockQty) {
+                                     String sellStockTicker, String sellStockQty) {
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     try (InputStream is = new FileInputStream(filename)) {
       DocumentBuilder db = dbf.newDocumentBuilder();
@@ -384,7 +388,7 @@ public class PortfolioModelImpl implements PortfolioModel {
 
   @Override
   public void portfolioDCA(HashMap<String, Integer> stockWeights, int dollars, String filename,
-      String choosePortfolio) {
+                           String choosePortfolio) {
     System.out.println("dollars " + dollars);
     stockWeights.forEach((stock, weight) -> {
 
@@ -396,10 +400,10 @@ public class PortfolioModelImpl implements PortfolioModel {
       BigDecimal qtyToBuy = amountToInvest.divide(quote, 2, RoundingMode.FLOOR);
 
       System.out.println(
-          "Ticker: " + stock + " Weight: " + weight.toString() + " Bought: " + qtyToBuy
-              + " Quoted at: " + quote);
+              "Ticker: " + stock + " Weight: " + weight.toString() + " Bought: " + qtyToBuy
+                      + " Quoted at: " + quote);
       addStockToPortfolio(filename, choosePortfolio, stock, String.valueOf(qtyToBuy),
-          currentDate());
+              currentDate());
     });
   }
 
@@ -435,7 +439,7 @@ public class PortfolioModelImpl implements PortfolioModel {
           LocalDate lastDay;
           if (month.toString().equals("DECEMBER")) {
             lastDay = LocalDate.of(LocalDate.now().minusYears(1).getYear(), month,
-                1);
+                    1);
           } else {
             lastDay = LocalDate.of(LocalDate.now().getYear(), month, 1);
           }
@@ -443,13 +447,13 @@ public class PortfolioModelImpl implements PortfolioModel {
           lastDay = lastDay.plusMonths(1).minusDays(1);
 
           while (lastDay.getDayOfWeek().toString().equalsIgnoreCase("SATURDAY")
-              || lastDay.getDayOfWeek().toString().equalsIgnoreCase("SUNDAY")) {
+                  || lastDay.getDayOfWeek().toString().equalsIgnoreCase("SUNDAY")) {
             lastDay = lastDay.minusDays(1);
           }
 
           if (pDate.isBefore(lastDay)) {
             totalValue += Double.parseDouble(DataFetcher.fetchDate(ticker, lastDay))
-                * Double.parseDouble(qty);
+                    * Double.parseDouble(qty);
           }
         }
       }
@@ -482,11 +486,11 @@ public class PortfolioModelImpl implements PortfolioModel {
                         LocalDate date) {
 
     double totalW = 0.0;
-    for(String ticker : weights.keySet()) {
+    for (String ticker : weights.keySet()) {
       totalW += weights.get(ticker);
     }
 
-    if(totalW != 100.0) {
+    if (Math.abs(totalW - 100.0) > 0.01) {
       throw new IllegalArgumentException("Total weights of all stocks combines should be 100%");
     }
 

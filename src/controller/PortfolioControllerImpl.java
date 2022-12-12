@@ -452,7 +452,7 @@ public class PortfolioControllerImpl implements PortfolioController {
               totalW += weightage;
               weights.put(ticker, weightage);
             }
-            if (totalW != 100.0) {
+            if (Math.abs(totalW - 100.0) > 0.01 ) {
               this.view.displayCustom("\nTotal weightage has to be 100%. Enter again\n");
               is100 = false;
             }

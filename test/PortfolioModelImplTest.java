@@ -189,7 +189,7 @@ public class PortfolioModelImplTest {
       this.model.rebalance(portfolio, currStocks, weights, fileName, choosePortfolio,
               LocalDate.now());
       fail("Should fail for invalid weights but did not");
-    } catch(IllegalArgumentException e) {
+    } catch (IllegalArgumentException e) {
       weights.put("GOOG", 25.0);
       weights.put("MSFT", 10.0);
 
@@ -197,7 +197,7 @@ public class PortfolioModelImplTest {
         this.model.rebalance(portfolio, currStocks, weights, fileName, choosePortfolio,
                 LocalDate.now());
         fail("Should fail for invalid weights but did not");
-      } catch(IllegalArgumentException e2) {
+      } catch (IllegalArgumentException e2) {
         // pass
       }
     }
