@@ -54,7 +54,7 @@ public class PortfolioModelImpl implements PortfolioModel {
   @Override
   public User createNewUser(String username) {
     return new UserImpl(username);
-  } //.. not using dynamic dispatch
+  }
 
   @Override
   public Portfolio createUserPortfolio(Deque data, User user) {
