@@ -203,6 +203,17 @@ public interface PortfolioGUIView {
    */
   int getDollarAmount();
 
+  /**
+   * Takes the re-balancing weightages from the client.
+   *
+   * @param tickers tickers whose weightages we are asking for
+   */
   void getRebalanceWeightage(Set<String> tickers);
+
+  /**
+   * fetches re-balance weightages as a text field.
+   *
+   * @return weightages for the stocks.
+   */
   String getRebalanceWeightage();
 }

@@ -319,7 +319,8 @@ public class PortfolioModelImpl implements PortfolioModel {
               item.removeChild(tickerItem);
               item.removeChild(qtyItem);
               item.removeChild(pDateItem);
-              sellStockQty = String.valueOf(Double.parseDouble(sellStockQty) - Double.parseDouble(qty));
+              sellStockQty = String.valueOf(Double.parseDouble(sellStockQty)
+                      - Double.parseDouble(qty));
               break;
             } else if (Double.parseDouble(sellStockQty) < Double.parseDouble(qty)) {
               String updateQty = String.valueOf(
@@ -453,8 +454,8 @@ public class PortfolioModelImpl implements PortfolioModel {
         }
       }
       return totalValue;
-    } catch (IOException | ParserConfigurationException | XPathExpressionException |
-             SAXException ex) {
+    } catch (IOException | ParserConfigurationException | XPathExpressionException
+             | SAXException ex) {
       throw new RuntimeException(ex);
     }
   }
