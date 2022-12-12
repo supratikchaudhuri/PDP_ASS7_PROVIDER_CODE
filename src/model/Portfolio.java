@@ -1,13 +1,17 @@
 package model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This interface represents a portfolio for an individual user. It contains methods that provide
  * the user with the ability to view/create their current stock holdings.
  */
 public interface Portfolio {
+
+  Map<String, BigDecimal> getComposition(LocalDate date);
 
   /**
    * Returns the given User's portfolio holdings.
@@ -57,7 +61,7 @@ public interface Portfolio {
    *
    * @return current value of a portfolio.
    */
-  int getCurrentValue();
+  double getCurrentValue();
 
   /**
    * Converts the stocks within the portfolio into a HashMap.

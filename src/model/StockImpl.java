@@ -2,6 +2,7 @@ package model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
 import utils.DataFetcher;
 
 /**
@@ -23,7 +24,7 @@ public class StockImpl implements Stock {
   public StockImpl(String ticker, int quantity) throws IllegalArgumentException {
     if (quantity < 1) {
       throw new IllegalArgumentException(
-          "Invalid quantity. You cannot purchase 0 or negative shares.");
+              "Invalid quantity. You cannot purchase 0 or negative shares.");
     }
 
     this.ticker = ticker;
@@ -40,13 +41,13 @@ public class StockImpl implements Stock {
    * @throws IllegalArgumentException if quantity is 0, or date is in the future.
    */
   public StockImpl(String ticker, double quantity, String purchaseDate)
-      throws IllegalArgumentException {
+          throws IllegalArgumentException {
     if (LocalDate.parse(purchaseDate).isAfter(LocalDate.now())) {
       throw new IllegalArgumentException(
-          "Invalid date. Your purchase date cannot be in the future.");
+              "Invalid date. Your purchase date cannot be in the future.");
     } else if (quantity < 1) {
       throw new IllegalArgumentException(
-          "Invalid quantity. You cannot purchase 0 or negative shares.");
+              "Invalid quantity. You cannot purchase 0 or negative shares.");
     }
 
     this.ticker = ticker;
@@ -63,13 +64,13 @@ public class StockImpl implements Stock {
    * @throws IllegalArgumentException if quantity is 0, or date is in the future.
    */
   public StockImpl(String ticker, String quantity, String purchaseDate)
-      throws IllegalArgumentException {
+          throws IllegalArgumentException {
     if (LocalDate.parse(purchaseDate).isAfter(LocalDate.now())) {
       throw new IllegalArgumentException(
-          "Invalid date. Your purchase date cannot be in the future.");
+              "Invalid date. Your purchase date cannot be in the future.");
     } else if (Double.parseDouble(quantity) < 1) {
       throw new IllegalArgumentException(
-          "Invalid quantity. You cannot purchase 0 or negative shares.");
+              "Invalid quantity. You cannot purchase 0 or negative shares.");
     }
 
     this.ticker = ticker;

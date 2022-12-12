@@ -337,7 +337,7 @@ public class PortfolioModelImpl implements PortfolioModel {
       }
       try (FileOutputStream output = new FileOutputStream(filename)) {
         writeXml(doc, output);
-        if (Integer.parseInt(sellStockQty) > 0) {
+        if (Double.parseDouble(sellStockQty) > 0) {
           sellStockFromPortfolio(filename, choosePortfolio, sellStockTicker, sellStockQty);
         }
       }
@@ -460,7 +460,7 @@ public class PortfolioModelImpl implements PortfolioModel {
   }
 
   @Override
-  public int getCurrentValue(Portfolio portfolio) {
+  public double getCurrentValue(Portfolio portfolio) {
     return portfolio.getCurrentValue();
   }
 
@@ -476,7 +476,23 @@ public class PortfolioModelImpl implements PortfolioModel {
   }
 
   @Override
-  public void rebalance() {
+  public void rebalance(Portfolio currentPortfolio, Map<String, BigDecimal> currStocks,
+                        Map<String, Double> weights, String fileName, String choosePortfolio,
+                        LocalDate date) {
+    double portfolioValue = this.getCurrentValue(currentPortfolio);
 
+    for (String ticker : currStocks.keySet()) {
+      BigDecimal price = new BigDecimal(DataFetcher.fetchDate(ticker, date));
+      double value = price.multiply(currStocks.get(ticker)).doubleValue();
+      double expectedValue = (weights.get(ticker) / 100.0) * portfolioValue;
+      double delta = value - expectedValue;
+      if (delta > 0) {
+        String qty = Double.toString(delta / price.doubleValue());
+        this.sellStockFromPortfolio(fileName, choosePortfolio, ticker, qty);
+      } else if (delta < 0) {
+        String qty = Double.toString(-delta / price.doubleValue());
+        this.addStockToPortfolio(fileName, choosePortfolio, ticker, qty, date.toString());
+      }
+    }
   }
 }

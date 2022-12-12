@@ -8,9 +8,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+
 import utils.DataFetcher;
 
 /**
@@ -22,7 +24,7 @@ public class PortfolioImpl implements Portfolio {
   private Deque<StockImpl> stocks;
   private final LocalDate creationDate;
   private double commissionRate;
-  private int currentValue;
+  private double currentValue;
 
   /**
    * Creates a new PortfolioImpl object.
@@ -41,7 +43,7 @@ public class PortfolioImpl implements Portfolio {
    * @param commissionRate the percentage that the broker charges.
    */
   public PortfolioImpl(Deque<StockImpl> stocks, double commissionRate)
-      throws IllegalArgumentException {
+          throws IllegalArgumentException {
     if (commissionRate > 1) {
       throw new IllegalArgumentException("Commission Rate too high.");
     }
@@ -56,7 +58,7 @@ public class PortfolioImpl implements Portfolio {
     Deque<StockImpl> placeholder = new LinkedList<>();
     StringBuilder output = new StringBuilder();
     NumberFormat formatter = NumberFormat.getCurrencyInstance();
-    int total = 0;
+    double total = 0;
 
     output.append("Current Holdings \n");
     int length = this.stocks.size();
@@ -67,10 +69,10 @@ public class PortfolioImpl implements Portfolio {
       String ticker = current.getTicker();
       String price = DataFetcher.fetchToday(ticker);
       BigDecimal totalValue = new BigDecimal(price).multiply(qty);
-      total += totalValue.intValue();
+      total += totalValue.doubleValue();
       String newLine =
-          "Ticker symbol: " + ticker + " Quantity: " + qty + " Value: " + formatter.format(
-              totalValue) + "\n";
+              "Ticker symbol: " + ticker + " Quantity: " + qty + " Value: " + formatter.format(
+                      totalValue) + "\n";
       output.append(newLine);
       placeholder.add(current);
     }
@@ -89,11 +91,11 @@ public class PortfolioImpl implements Portfolio {
     this.stocks.forEach(stock -> {
       if (stock.getTicker().equals(ticker)) {
         BigDecimal value = new BigDecimal(DataFetcher.fetchToday(ticker))
-            .multiply(stock.getQuantity());
+                .multiply(stock.getQuantity());
 
         String toAppend = "You currently hold " + stock.getQuantity()
-            + " shares of " + stock.getTicker() + ". Valued at: "
-            + formatter.format(value);
+                + " shares of " + stock.getTicker() + ". Valued at: "
+                + formatter.format(value);
 
         result.append(toAppend);
       }
@@ -103,8 +105,35 @@ public class PortfolioImpl implements Portfolio {
   }
 
   @Override
+  public Map<String, BigDecimal> getComposition(LocalDate date) {
+    Map<String, BigDecimal> composition = new HashMap<>();
+    for (StockImpl next : this.stocks) {
+      LocalDate nextDate = LocalDate.parse(next.getDate());
+      System.out.println(nextDate + " " + date);
+      if (nextDate.compareTo(date) <= 0) {
+        System.out.println("true");
+        BigDecimal qty = next.getQuantity();
+        String ticker = next.getTicker();
+
+        LocalDate d = date;
+        while (date.getDayOfWeek().toString().equalsIgnoreCase("SATURDAY")
+                || date.getDayOfWeek().toString().equalsIgnoreCase("SUNDAY")) {
+          date = date.minusDays(1);
+        }
+        if (!composition.containsKey(ticker)) {
+          composition.put(ticker, qty);
+        } else {
+          composition.put(ticker, composition.get(ticker).add(qty));
+        }
+        date = d;
+      }
+    }
+    return composition;
+  }
+
+  @Override
   public String getPortfolioByDate(String date, double commissionRate)
-      throws IllegalArgumentException {
+          throws IllegalArgumentException {
     NumberFormat formatter = NumberFormat.getCurrencyInstance();
     LocalDate dateParam = LocalDate.parse(date);
 
@@ -121,19 +150,20 @@ public class PortfolioImpl implements Portfolio {
       StockImpl next = stocks.next();
       LocalDate nextDate = LocalDate.parse(next.getDate());
       if (nextDate.isBefore(dateParam) || nextDate.isEqual(dateParam)) {
-        int qty = next.getQuantity().intValue();
+        double qty = next.getQuantity().doubleValue();
         String ticker = next.getTicker();
         while (dateParam.getDayOfWeek().toString().equalsIgnoreCase("SATURDAY")
-            || dateParam.getDayOfWeek().toString().equalsIgnoreCase("SUNDAY")) {
+                || dateParam.getDayOfWeek().toString().equalsIgnoreCase("SUNDAY")) {
           dateParam = dateParam.minusDays(1);
         }
 
         String value = DataFetcher.fetchDate(ticker, dateParam);
         BigDecimal total = new BigDecimal(value).multiply(new BigDecimal(qty));
+        System.out.println(ticker + " " + total);
         totalValue = totalValue + total.intValue();
 
-        String newLine = String.format("%s: %d shares worth %s purchased on %s \n", ticker, qty,
-            formatter.format(total.intValue()), next.getDate());
+        String newLine = String.format("%s: %f shares worth %s purchased on %s \n", ticker, qty,
+                formatter.format(total.intValue()), next.getDate());
         output.append(newLine);
       }
     }
@@ -191,7 +221,7 @@ public class PortfolioImpl implements Portfolio {
    * @param stock  the current StockImpl from the stocks in this portfolio.
    */
   private void confirmSold(String ticker, int qty, StringBuilder result,
-      AtomicBoolean sold, AtomicReference<BigDecimal> total, StockImpl stock) {
+                           AtomicBoolean sold, AtomicReference<BigDecimal> total, StockImpl stock) {
 
     NumberFormat formatter = NumberFormat.getCurrencyInstance();
 
@@ -200,10 +230,10 @@ public class PortfolioImpl implements Portfolio {
     total.set(total.get().subtract(commission));
 
     result.append("Sold " + qty + " shares of " + ticker + " for a price of: " + formatter.format(
-        total.get()));
+            total.get()));
     result.append(
-        "\nCommission fee of " + (this.commissionRate * 100) + "% totaling: " + formatter.format(
-            commission));
+            "\nCommission fee of " + (this.commissionRate * 100) + "% totaling: " + formatter.format(
+                    commission));
 
     sold.set(true);
   }
@@ -232,7 +262,7 @@ public class PortfolioImpl implements Portfolio {
     LocalDate currentMonth = LocalDate.parse(start);
 
     while (currentMonth.isBefore(LocalDate.parse(end)) || currentMonth.isEqual(
-        LocalDate.parse(end))) {
+            LocalDate.parse(end))) {
       LocalDate firstOfMonth = currentMonth.withDayOfMonth(1);
       LocalDate lastOfMonth = firstOfMonth.plusMonths(1).minusDays(1);
       AtomicInteger total = new AtomicInteger();
@@ -240,26 +270,26 @@ public class PortfolioImpl implements Portfolio {
       stocks.forEach(stock -> {
         int qty = stock.getQuantity().intValue();
         String endOfMonthValue = DataFetcher.fetchMonthly(stock.getTicker(),
-            firstOfMonth.toString(), lastOfMonth.toString());
+                firstOfMonth.toString(), lastOfMonth.toString());
         List<String> currentVal = List.of(endOfMonthValue.split(": "));
         BigDecimal stockVal = new BigDecimal(currentVal.get(1).strip()).multiply(
-            new BigDecimal(qty));
+                new BigDecimal(qty));
         total.addAndGet(stockVal.intValue());
       });
       int monthlyTotal = total.intValue();
       result.append(
-          currentMonth.getMonth().toString().substring(0, 3) + " " + currentMonth.getYear() + ": ");
+              currentMonth.getMonth().toString().substring(0, 3) + " " + currentMonth.getYear() + ": ");
       result.append("*".repeat(monthlyTotal / 1000) + "\n");
       currentMonth = currentMonth.plusMonths(1);
     }
 
     String startMonthAndYear =
-        LocalDate.parse(start).getMonth().toString() + " " + LocalDate.parse(start).getYear();
+            LocalDate.parse(start).getMonth().toString() + " " + LocalDate.parse(start).getYear();
     String endMonthAndYear =
-        LocalDate.parse(end).getMonth().toString() + " " + LocalDate.parse(end).getYear();
+            LocalDate.parse(end).getMonth().toString() + " " + LocalDate.parse(end).getYear();
     result.insert(0,
-        "Monthly Performance of Portfolio from " + startMonthAndYear + " to " + endMonthAndYear
-            + "\n");
+            "Monthly Performance of Portfolio from " + startMonthAndYear + " to " + endMonthAndYear
+                    + "\n");
 
     result.append("\nScale: * = $1,000");
     return result.toString();
@@ -282,7 +312,7 @@ public class PortfolioImpl implements Portfolio {
       AtomicInteger total = new AtomicInteger();
 
       while (current.getDayOfWeek().toString().equalsIgnoreCase("SATURDAY")
-          || current.getDayOfWeek().toString().equalsIgnoreCase("SUNDAY")) {
+              || current.getDayOfWeek().toString().equalsIgnoreCase("SUNDAY")) {
         current = current.plusDays(1);
       }
 
@@ -299,7 +329,7 @@ public class PortfolioImpl implements Portfolio {
 
       if (total.intValue() != 0) {
         result.append(
-            current.getMonth().toString().substring(0, 3) + " " + current.getDayOfMonth() + ": ");
+                current.getMonth().toString().substring(0, 3) + " " + current.getDayOfMonth() + ": ");
         result.append("*".repeat(total.intValue() / 1000) + "\n");
       }
 
@@ -307,14 +337,14 @@ public class PortfolioImpl implements Portfolio {
     }
 
     result.insert(0,
-        "Daily Performance of Portfolio from " + firstOfMonth + " to " + endOfMonth.minusDays(1)
-            + "\n");
+            "Daily Performance of Portfolio from " + firstOfMonth + " to " + endOfMonth.minusDays(1)
+                    + "\n");
     result.append("\nScale: * = $1,000");
     return result.toString();
   }
 
   @Override
-  public int getCurrentValue() {
+  public double getCurrentValue() {
     getPortfolio();
     return currentValue;
   }
@@ -326,7 +356,7 @@ public class PortfolioImpl implements Portfolio {
     stocks.forEach(stock -> {
       String ticker = stock.getTicker();
 
-      if(stockList.containsKey(ticker)) {
+      if (stockList.containsKey(ticker)) {
         stockList.put(ticker, stockList.get(ticker).add(stock.getQuantity()));
       } else {
         stockList.put(ticker, stock.getQuantity());

@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -194,7 +195,7 @@ public class PortfolioControllerImpl implements PortfolioController {
         this.view.displayCustom("\n");
         this.view.viewPortfolioOptions();
         String viewPortfolioOption = this.scanInput();
-        while (Integer.parseInt(viewPortfolioOption) > 6
+        while (Integer.parseInt(viewPortfolioOption) > 7
                 || Integer.parseInt(viewPortfolioOption) < 1) {
           this.view.invalidResponse();
           this.view.viewPortfolioOptions();
@@ -413,7 +414,26 @@ public class PortfolioControllerImpl implements PortfolioController {
 
         // re-balance
         if (viewPortfolioOption.equals("6")) {
+
+//          boolean isValidDate;
+          LocalDate date;
+//          do {
+//            isValidDate = true;
+//            try {
+//              this.view.displayCustom("Date for re-balance (YYYY-MM-DD) : ");
+//              date = LocalDate.parse(scanInput());
+//              if(date.compareTo(LocalDate.now()) > 0) {
+//                isValidDate = false;
+//                this.view.displayCustom("\nCannot re-balance in future\n");
+//              }
+//            } catch(DateTimeParseException e) {
+//              this.view.displayCustom("\nInvalid date format\n");
+//            }
+//          } while(!isValidDate);
+            date = LocalDate.now();
+
           Map<String, BigDecimal> currStocks = currentPortfolio.getListOfStocks();
+          // Map<String, BigDecimal> currStocks = currentPortfolio.getComposition(date);
           Map<String, Double> weights;
           boolean is100;
           do {
@@ -424,6 +444,11 @@ public class PortfolioControllerImpl implements PortfolioController {
             for (String ticker : currStocks.keySet()) {
               this.view.displayCustom("Enter weightage for " + ticker + " : ");
               double weightage = Double.parseDouble(scanInput());
+              while (weightage <= 0.0) {
+                this.view.displayCustom("\nWeightage should be > 0\n");
+                this.view.displayCustom("\nEnter weightage for " + ticker + " : ");
+                weightage = Double.parseDouble(scanInput());
+              }
               totalW += weightage;
               weights.put(ticker, weightage);
             }
@@ -432,21 +457,14 @@ public class PortfolioControllerImpl implements PortfolioController {
               is100 = false;
             }
           } while (!is100);
-
-          int portfolioValue = this.model.getCurrentValue(currentPortfolio);
-          for (String ticker : currStocks.keySet()) {
-            BigDecimal price = new BigDecimal(DataFetcher.fetchToday(ticker));
-            double value = price.multiply(currStocks.get(ticker)).doubleValue();
-            double expectedValue = (weights.get(ticker) / 100.0) * portfolioValue;
-            double delta = value - expectedValue;
-            if (delta > 0) {
-              String qty = Double.toString(delta / price.doubleValue());
-              this.model.sellStockFromPortfolio(fileName, choosePortfolio, ticker, qty);
-            } else if (delta < 0) {
-              String qty = Double.toString(-delta / price.doubleValue());
-              this.model.addStockToPortfolio(fileName, choosePortfolio, ticker, qty, LocalDate.now().toString());
-            }
+          while (date.getDayOfWeek().toString().equalsIgnoreCase("SATURDAY")
+                  || date.getDayOfWeek().toString().equalsIgnoreCase("SUNDAY")) {
+            date = date.minusDays(1);
           }
+          this.model.rebalance(currentPortfolio, currStocks, weights, fileName, choosePortfolio, date);
+          currentPortfolio = this.showPortfolio(choosePortfolio);
+          String ans = currentPortfolio.getPortfolioByDate(date.toString(), 0);
+          this.view.displayCustom(ans);
         }
 
         if (viewPortfolioOption.equals("7")) {

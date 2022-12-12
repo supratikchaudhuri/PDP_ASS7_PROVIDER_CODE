@@ -51,7 +51,7 @@ public class DataParser {
     for (String current : list) {
       List<String> currentSplit = List.of(current.split(","));
 
-      if (currentSplit.get(0).equals(date.toString())) {
+      if (currentSplit.get(0).equals(date.toString()) || currentSplit.get(0).compareTo(date.toString()) <= 0) {
         return currentSplit.get(4).toString();
       }
     }
