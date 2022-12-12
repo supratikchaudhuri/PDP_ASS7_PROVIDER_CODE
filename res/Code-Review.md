@@ -57,7 +57,9 @@ Was the portfolio suppose to do this or was it a bug was unclear to us since the
 
 - There is no Inflexible portfolio.
 
-- Not handling invalid data and edge cases. 
+- Not handling invalid data and edge cases. In some cases, the sell function fails the user tries to sell stocks on a holiday/weekend. In some instances they work.
+If a user stops midway in the portfolio creation process, then the portfolio is still created (no contents inside). However, when you try to read this empty portfolio,
+the xml modules fails and throws IO exception. 
 
 - _______No go back option in the middle of an operation. If the user wants to go back to a previous option, they will have to complete the current operation first.
 Also, in some cases, you have to re-run the entire application to get the main menu, since there is no `go back` / `get main menu` button on certain panels.
