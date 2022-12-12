@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<UserData>
+    <User username="newuser">
+        <count>1</count>
+        <Portfolio1>
+            <ticker1>MSFT</ticker1>
+            <qty1>10</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>TSLA</ticker1>
+            <qty1>99.65522479754259</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>AAPL</ticker1>
+            <qty1>100</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>MSFT</ticker1>
+            <qty1>60.566644935213105</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>AAPL</ticker1>
+            <qty1>21.823761958356783</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+        </Portfolio1>
+    </User>
+</UserData>

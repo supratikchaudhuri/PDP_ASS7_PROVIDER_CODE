@@ -40,8 +40,13 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
   private final PortfolioModel model;
   private final PortfolioGUIView GUIView;
   private User currentUser;
+  private double currentValue;
   private String fileName;
+  private String portfolioChoice;
+  private int portfolioCount;
+  private HashMap<String, Integer> stockWeights;
   private int maxWeight;
+  private double maxQty;
   private String username;
   private String ticker;
   private String qty;
@@ -74,10 +79,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    double currentValue = 0;
-    String portfolioChoice = "";
-    int portfolioCount = 0;
-    HashMap<String, Integer> stockWeights = new HashMap<>();
+//    HashMap<String, Integer> stockWeights = new HashMap<>();
 //    int maxWeight = 100;
 //    double maxQty = 0;
 //    String username = "";
@@ -297,7 +299,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
       // Gets the selected stock and then prompts user to select a quantity.
       case "Select Stock to Sell":
         String selectedStock = this.GUIView.getDropDownSelection();
-        double maxQty = Double.parseDouble(selectedStock.split(": ")[1]);
+        maxQty = Double.parseDouble(selectedStock.split(": ")[1]);
         tickerSell = selectedStock.split(": ")[0];
         this.GUIView.askForQtySell();
         break;

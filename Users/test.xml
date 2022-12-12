@@ -4,10 +4,7 @@
         <count>1</count>
         <Portfolio1>
             <ticker1>mgm</ticker1>
-            <qty1>35</qty1>
-            <PurchaseDate1>2022-12-12</PurchaseDate1>
-            <ticker1>mgm</ticker1>
-            <qty1>248.64030261348</qty1>
+            <qty1>95.38385827200577</qty1>
             <PurchaseDate1>2022-12-12</PurchaseDate1>
             <ticker1>tsla</ticker1>
             <qty1>9.75635893941974</qty1>
@@ -23,6 +20,12 @@
             <PurchaseDate1>2022-12-12</PurchaseDate1>
             <ticker1>tsla</ticker1>
             <qty1>2.983325975059621</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>tsla</ticker1>
+            <qty1>50.958739657917455</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>v</ticker1>
+            <qty1>43.71903371226699</qty1>
             <PurchaseDate1>2022-12-12</PurchaseDate1>
         </Portfolio1>
     </User>
