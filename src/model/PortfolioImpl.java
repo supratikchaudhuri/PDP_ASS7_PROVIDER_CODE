@@ -159,7 +159,6 @@ public class PortfolioImpl implements Portfolio {
 
         String value = DataFetcher.fetchDate(ticker, dateParam);
         BigDecimal total = new BigDecimal(value).multiply(new BigDecimal(qty));
-        System.out.println(ticker + " " + total);
         totalValue = totalValue + total.intValue();
 
         String newLine = String.format("%s: %f shares worth %s purchased on %s \n", ticker, qty,
