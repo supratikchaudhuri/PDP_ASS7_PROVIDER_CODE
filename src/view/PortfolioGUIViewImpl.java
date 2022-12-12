@@ -654,7 +654,8 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     message = new JLabel("Please enter amount separated by comma. Total must add up to 100%.");
     panel.add(message);
 
-    message = new JLabel("Ex- if it shows: 'Stocks: MSFT, AAPL', then enter '25.5,74.4' for 25.5% MSFT and 74.5% AAPL");
+    message = new JLabel("Ex- if it shows: 'Stocks: MSFT, AAPL', then enter '25.5,74.4' " +
+            "for 25.5% MSFT and 74.5% AAPL");
     panel.add(message);
 
     StringBuilder stocks = new StringBuilder(" ");

@@ -1,58 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <UserData>
     <User username="supra">
-        <count>4</count>
+        <count>1</count>
         <Portfolio1>
             <ticker1>MSFT</ticker1>
             <qty1>10</qty1>
-            <PurchaseDate1>2020-10-10</PurchaseDate1>
-            <ticker1>GOOG</ticker1>
-            <qty1>35</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>AAPL</ticker1>
+            <qty1>200.0420723128869</qty1>
             <PurchaseDate1>2015-10-10</PurchaseDate1>
-            <ticker1>JNJ</ticker1>
-            <qty1>99</qty1>
-            <PurchaseDate1>2009-01-01</PurchaseDate1>
-            <ticker1>NFLX</ticker1>
-            <qty1>60</qty1>
-            <PurchaseDate1>2022-12-10</PurchaseDate1>
-            <ticker1>GOOG</ticker1>
-            <qty1>199</qty1>
-            <PurchaseDate1>2022-12-10</PurchaseDate1>
-            <ticker1>GOOG</ticker1>
-            <qty1>1</qty1>
-            <PurchaseDate1>2021-10-10</PurchaseDate1>
-            <ticker1>NFLX</ticker1>
-            <qty1>15</qty1>
-            <PurchaseDate1>2022-12-10</PurchaseDate1>
-            <ticker1>NFLX</ticker1>
-            <qty1>100.93666666666667</qty1>
-            <PurchaseDate1>2022-12-11</PurchaseDate1>
-            <ticker1>NFLX</ticker1>
-            <qty1>180.72408271916026</qty1>
-            <PurchaseDate1>2022-12-11</PurchaseDate1>
-            <ticker1>NFLX</ticker1>
-            <qty1>210.76402867544036</qty1>
-            <PurchaseDate1>2022-12-11</PurchaseDate1>
-            <ticker1>NFLX</ticker1>
-            <qty1>221.62647471451746</qty1>
-            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>TSLA</ticker1>
+            <qty1>150</qty1>
+            <PurchaseDate1>2020-10-10</PurchaseDate1>
+            <ticker1>MSFT</ticker1>
+            <qty1>105.8747494091761</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>TSLA</ticker1>
+            <qty1>13.63997765987155</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
         </Portfolio1>
-        <Portfolio2/>
-        <Portfolio3>
-            <ticker3>MSFT</ticker3>
-            <qty3>97.79</qty3>
-            <PurchaseDate3>2022-12-10</PurchaseDate3>
-            <ticker3>GOOG</ticker3>
-            <qty3>32.23</qty3>
-            <PurchaseDate3>2022-12-10</PurchaseDate3>
-            <ticker3>AAPL</ticker3>
-            <qty3>21.10</qty3>
-            <PurchaseDate3>2022-12-10</PurchaseDate3>
-        </Portfolio3>
-        <Portfolio4>
-            <ticker4>GOOG</ticker4>
-            <qty4>100</qty4>
-            <PurchaseDate4>2022-12-11</PurchaseDate4>
-        </Portfolio4>
     </User>
 </UserData>
