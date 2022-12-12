@@ -45,7 +45,6 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
   private JTextField stockDate;
   private JTextField stockWeight;
   private JTextField dollarAmount;
-
   private JTextField rebalanceWeightages;
   private JButton login;
   private int quantity;
