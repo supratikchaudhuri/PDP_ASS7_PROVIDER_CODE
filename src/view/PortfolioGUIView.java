@@ -3,6 +3,7 @@ package view;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -223,4 +224,11 @@ public interface PortfolioGUIView {
    * @param title title of dialog box.
    */
   void showPopupMsg(String msg, String title);
+
+  /**
+   * This method displays the new values of stocks in portfolio after re-balancing.
+   *
+   * @param expectedValuesMap map of tickers and their balanced values.
+   */
+  void displayNewWeightedValues(Map<String, Double> expectedValuesMap);
 }

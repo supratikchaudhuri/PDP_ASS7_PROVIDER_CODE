@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <UserData>
-    <User username="mom">
+    <User username="supra">
         <count>1</count>
         <Portfolio1>
-            <ticker1>GOOG</ticker1>
-            <qty1>11</qty1>
+            <ticker1>TSLA</ticker1>
+            <qty1>207.52323918484092</qty1>
             <PurchaseDate1>2022-12-12</PurchaseDate1>
             <ticker1>MSFT</ticker1>
-            <qty1>12.289739020236816</qty1>
+            <qty1>27.58429369133897</qty1>
             <PurchaseDate1>2022-12-12</PurchaseDate1>
-            <ticker1>GOOG</ticker1>
-            <qty1>22.16889696451475</qty1>
-            <PurchaseDate1>2022-12-12</PurchaseDate1>
-            <ticker1>JNJ</ticker1>
-            <qty1>57.58451754385966</qty1>
+            <ticker1>TSLA</ticker1>
+            <qty1>166.01859134787284</qty1>
             <PurchaseDate1>2022-12-12</PurchaseDate1>
             <ticker1>MSFT</ticker1>
-            <qty1>28.266399746544703</qty1>
+            <qty1>3.601816568741548E-15</qty1>
             <PurchaseDate1>2022-12-12</PurchaseDate1>
-            <ticker1>GOOG</ticker1>
-            <qty1>79.6053527148354</qty1>
+            <ticker1>TSLA</ticker1>
+            <qty1>4.335572407450498E-14</qty1>
             <PurchaseDate1>2022-12-12</PurchaseDate1>
         </Portfolio1>
     </User>

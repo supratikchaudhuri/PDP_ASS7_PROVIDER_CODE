@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.time.Month;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.JButton;
@@ -695,6 +696,29 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
   @Override
   public void showPopupMsg(String msg, String title) {
     JOptionPane.showMessageDialog(null, msg, title, 1);
+  }
+
+  @Override
+  public void displayNewWeightedValues(Map<String, Double> expectedValuesMap) {
+    resetPanel();
+    panel = panelCreator(mainPanelHeight);
+
+    panel.add(new JLabel("This is your new balanced portfolio"));
+
+    double total = 0;
+
+    for(String ticker: expectedValuesMap.keySet()) {
+      total += expectedValuesMap.get(ticker);
+      panel.add(new JLabel("Ticker: " + ticker
+              + " Values : $" + expectedValuesMap.get(ticker)));
+    }
+
+    panel.add(new JLabel("Total Portfolio Value: $" + total));
+
+    JButton menuButton = buttonCreator("Return to Main Menu", "Main Menu");
+    panel.add(menuButton);
+
+    window.add(panel);
   }
 
   /**

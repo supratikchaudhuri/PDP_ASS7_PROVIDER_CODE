@@ -231,7 +231,7 @@ public interface PortfolioModel {
    */
   String totalSoldOnDate(String ticker, String date, int qty);
 
-  void rebalance(Portfolio currentPortfolio, Map<String, BigDecimal> currStocks,
+  Map<String, Double> rebalance(Portfolio currentPortfolio, Map<String, BigDecimal> currStocks,
                  Map<String, Double> weights, String fileName, String choosePortfolio,
                  LocalDate date);
 }
