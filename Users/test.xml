@@ -3,26 +3,14 @@
     <User username="test">
         <count>1</count>
         <Portfolio1>
-            <ticker1>mgm</ticker1>
-            <qty1>35</qty1>
+            <ticker1>GOOG</ticker1>
+            <qty1>64.50316965724723</qty1>
             <PurchaseDate1>2022-12-12</PurchaseDate1>
-            <ticker1>mgm</ticker1>
-            <qty1>248.64030261348</qty1>
+            <ticker1>MSFT</ticker1>
+            <qty1>11</qty1>
             <PurchaseDate1>2022-12-12</PurchaseDate1>
-            <ticker1>tsla</ticker1>
-            <qty1>9.75635893941974</qty1>
-            <PurchaseDate1>2022-12-12</PurchaseDate1>
-            <ticker1>mgm</ticker1>
-            <qty1>22.667629650334565</qty1>
-            <PurchaseDate1>2021-12-31</PurchaseDate1>
-            <ticker1>v</ticker1>
-            <qty1>10.929758428066744</qty1>
-            <PurchaseDate1>2021-12-31</PurchaseDate1>
-            <ticker1>mgm</ticker1>
-            <qty1>195.70925264678348</qty1>
-            <PurchaseDate1>2022-12-12</PurchaseDate1>
-            <ticker1>tsla</ticker1>
-            <qty1>2.983325975059621</qty1>
+            <ticker1>MSFT</ticker1>
+            <qty1>13.461372341292478</qty1>
             <PurchaseDate1>2022-12-12</PurchaseDate1>
         </Portfolio1>
     </User>
