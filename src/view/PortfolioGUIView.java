@@ -204,7 +204,7 @@ public interface PortfolioGUIView {
   int getDollarAmount();
 
   /**
-   * Asks the user for the weightages of the stocks for portfolio balancing
+   * Asks the user for the weightages of the stocks for portfolio balancing.
    *
    * @param tickers tickers whose weightage is asked
    */
