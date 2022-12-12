@@ -21,6 +21,9 @@
             <ticker1>msft</ticker1>
             <qty1>22.378656996169834</qty1>
             <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>AAPL</ticker1>
+            <qty1>1</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
         </Portfolio1>
     </User>
 </UserData>
