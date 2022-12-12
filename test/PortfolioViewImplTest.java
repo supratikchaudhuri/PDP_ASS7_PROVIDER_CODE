@@ -153,4 +153,18 @@ public class PortfolioViewImplTest {
 
     assertEquals(expectedOutput, output.toString());
   }
+
+  @Test
+  public void testPortfolioOptions() {
+    view.viewPortfolioOptions();
+    String expected = "Would you like to: \n" +
+            "1. Add stocks to this portfolio.\n" +
+            "2. Sell stocks from this portfolio.\n" +
+            "3. View the daily performance.\n" +
+            "4. View the monthly performance. \n" +
+            "5. View the cost basis by a specific date.\n" +
+            "6. Re-balance this portfolio.\n" +
+            "7. Return back to the main menu\n";
+    assertEquals(expected, output.toString());
+  }
 }
