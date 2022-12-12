@@ -392,7 +392,7 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
           for (String ticker : currentStocks.keySet()) {
             weights.put(ticker, Double.parseDouble(weightages[j++]));
           }
-          this.model.rebalance(currentPortfolio, currentStocks, weights, fileName, portfolioChoice);
+          this.model.rebalance(currentPortfolio, currentStocks, weights, fileName, portfolioChoice, LocalDate.now());
         }
         break;
 

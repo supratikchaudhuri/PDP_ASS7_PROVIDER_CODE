@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -413,7 +414,26 @@ public class PortfolioControllerImpl implements PortfolioController {
 
         // re-balance
         if (viewPortfolioOption.equals("6")) {
+
+//          boolean isValidDate;
+          LocalDate date;
+//          do {
+//            isValidDate = true;
+//            try {
+//              this.view.displayCustom("Date for re-balance (YYYY-MM-DD) : ");
+//              date = LocalDate.parse(scanInput());
+//              if(date.compareTo(LocalDate.now()) > 0) {
+//                isValidDate = false;
+//                this.view.displayCustom("\nCannot re-balance in future\n");
+//              }
+//            } catch(DateTimeParseException e) {
+//              this.view.displayCustom("\nInvalid date format\n");
+//            }
+//          } while(!isValidDate);
+            date = LocalDate.now();
+
           Map<String, BigDecimal> currStocks = currentPortfolio.getListOfStocks();
+          // Map<String, BigDecimal> currStocks = currentPortfolio.getComposition(date);
           Map<String, Double> weights;
           boolean is100;
           do {
@@ -437,7 +457,14 @@ public class PortfolioControllerImpl implements PortfolioController {
               is100 = false;
             }
           } while (!is100);
-          this.model.rebalance(currentPortfolio, currStocks, weights, fileName, choosePortfolio);
+          while (date.getDayOfWeek().toString().equalsIgnoreCase("SATURDAY")
+                  || date.getDayOfWeek().toString().equalsIgnoreCase("SUNDAY")) {
+            date = date.minusDays(1);
+          }
+          this.model.rebalance(currentPortfolio, currStocks, weights, fileName, choosePortfolio, date);
+          currentPortfolio = this.showPortfolio(choosePortfolio);
+          String ans = currentPortfolio.getPortfolioByDate(date.toString(), 0);
+          this.view.displayCustom(ans);
         }
 
         if (viewPortfolioOption.equals("7")) {

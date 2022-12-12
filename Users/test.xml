@@ -3,27 +3,27 @@
     <User username="test">
         <count>1</count>
         <Portfolio1>
-            <ticker1>goog</ticker1>
-            <qty1>100</qty1>
-            <PurchaseDate1>2022-12-11</PurchaseDate1>
-            <ticker1>aapl</ticker1>
-            <qty1>49</qty1>
-            <PurchaseDate1>2022-12-11</PurchaseDate1>
-            <ticker1>msft</ticker1>
-            <qty1>60.70024855350012</qty1>
-            <PurchaseDate1>2022-12-11</PurchaseDate1>
-            <ticker1>jnj</ticker1>
-            <qty1>37</qty1>
-            <PurchaseDate1>2022-12-11</PurchaseDate1>
-            <ticker1>goog</ticker1>
-            <qty1>60.06290963790696</qty1>
-            <PurchaseDate1>2022-12-11</PurchaseDate1>
-            <ticker1>aapl</ticker1>
-            <qty1>55.79076392796849</qty1>
-            <PurchaseDate1>2022-12-11</PurchaseDate1>
-            <ticker1>jnj</ticker1>
-            <qty1>47.76758279276203</qty1>
-            <PurchaseDate1>2022-12-11</PurchaseDate1>
+            <ticker1>mgm</ticker1>
+            <qty1>35</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>mgm</ticker1>
+            <qty1>248.64030261348</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>tsla</ticker1>
+            <qty1>9.75635893941974</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>mgm</ticker1>
+            <qty1>22.667629650334565</qty1>
+            <PurchaseDate1>2021-12-31</PurchaseDate1>
+            <ticker1>v</ticker1>
+            <qty1>10.929758428066744</qty1>
+            <PurchaseDate1>2021-12-31</PurchaseDate1>
+            <ticker1>mgm</ticker1>
+            <qty1>195.70925264678348</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>tsla</ticker1>
+            <qty1>2.983325975059621</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
         </Portfolio1>
     </User>
 </UserData>

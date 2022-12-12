@@ -5,6 +5,7 @@ import org.w3c.dom.Document;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.Month;
 import java.util.Deque;
 import java.util.HashMap;
@@ -231,5 +232,6 @@ public interface PortfolioModel {
   String totalSoldOnDate(String ticker, String date, int qty);
 
   void rebalance(Portfolio currentPortfolio, Map<String, BigDecimal> currStocks,
-                 Map<String, Double> weights, String fileName, String choosePortfolio);
+                 Map<String, Double> weights, String fileName, String choosePortfolio,
+                 LocalDate date);
 }
