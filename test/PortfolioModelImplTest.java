@@ -169,6 +169,74 @@ public class PortfolioModelImplTest {
     assertEquals(expected, value);
   }
 
+  @Test
+  public void testRebalanceInvalid() {
+    String name = "test";
+
+    User testUser = new UserImpl(name);
+    String fileName = "Users/" + name + ".xml";
+    String choosePortfolio = "1";
+
+    Portfolio portfolio = this.showPortfolio(choosePortfolio, fileName, testUser);
+
+    Map<String, BigDecimal> currStocks = portfolio.getListOfStocks();
+
+    Map<String, Double> weights = new HashMap<>();
+    weights.put("GOOG", 50.0);
+    weights.put("MSFT", 150.0);
+
+    try {
+      this.model.rebalance(portfolio, currStocks, weights, fileName, choosePortfolio,
+              LocalDate.now());
+      fail("Should fail for invalid weights but did not");
+    } catch(IllegalArgumentException e) {
+      weights.put("GOOG", 25.0);
+      weights.put("MSFT", 10.0);
+
+      try {
+        this.model.rebalance(portfolio, currStocks, weights, fileName, choosePortfolio,
+                LocalDate.now());
+        fail("Should fail for invalid weights but did not");
+      } catch(IllegalArgumentException e2) {
+        // pass
+      }
+    }
+  }
+
+  @Test
+  public void testRebalanceUnequalWeightage() {
+    String expected = "VZ: 495.923422 shares worth $18,547.00 purchased on 2022-12-12 \n" +
+            "AAPL: 220.671581 shares worth $31,370.00 purchased on 2022-12-12 \n" +
+            "JNJ: 167.247661 shares worth $29,392.00 purchased on 2022-12-12 \n" +
+            "VZ: 28.000000 shares worth $1,047.00 purchased on 2022-12-12 \n" +
+            "MSFT: 39.920821 shares worth $9,797.00 purchased on 2022-12-12 \n" +
+            "AAPL: 55.000000 shares worth $7,818.00 purchased on 2022-12-12 \n" +
+            "Total value: $97,971.00\n" +
+            "Commision: $0.00\n" +
+            "Raw cost: $97,971.00";
+    String name = "idk";
+
+    User testUser = new UserImpl(name);
+    String fileName = "Users/" + name + ".xml";
+    String choosePortfolio = "1";
+
+    Portfolio portfolio = this.showPortfolio(choosePortfolio, fileName, testUser);
+
+    Map<String, BigDecimal> currStocks = portfolio.getListOfStocks();
+
+    Map<String, Double> weights = new HashMap<>();
+    weights.put("AAPL", 40.0);
+    weights.put("JNJ", 30.0);
+    weights.put("MSFT", 10.0);
+    weights.put("VZ", 20.0);
+
+    this.model.rebalance(portfolio, currStocks, weights, fileName, choosePortfolio,
+            LocalDate.now());
+    portfolio = this.showPortfolio(choosePortfolio, fileName, testUser);
+    String value = portfolio.getPortfolioByDate(LocalDate.now().toString(), 0);
+    assertEquals(expected, value);
+  }
+
   private Portfolio showPortfolio(String choosePortfolio, String fileName, User currentUser) {
     Deque<StockImpl> stockData = new LinkedList<>();
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
