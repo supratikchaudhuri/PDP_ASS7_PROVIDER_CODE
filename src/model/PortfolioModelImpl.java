@@ -480,6 +480,16 @@ public class PortfolioModelImpl implements PortfolioModel {
   public void rebalance(Portfolio currentPortfolio, Map<String, BigDecimal> currStocks,
                         Map<String, Double> weights, String fileName, String choosePortfolio,
                         LocalDate date) {
+
+    double totalW = 0.0;
+    for(String ticker : weights.keySet()) {
+      totalW += weights.get(ticker);
+    }
+
+    if(totalW != 100.0) {
+      throw new IllegalArgumentException("Total weights of all stocks combines should be 100%");
+    }
+
     double portfolioValue = this.getCurrentValue(currentPortfolio);
 
     for (String ticker : currStocks.keySet()) {
