@@ -416,19 +416,19 @@ public class PortfolioControllerImpl implements PortfolioController {
 
           // boolean isValidDate;
           LocalDate date;
-           // do {
-             // isValidDate = true;
-             // try {
-               // this.view.displayCustom("Date for re-balance (YYYY-MM-DD) : ");
-               // date = LocalDate.parse(scanInput());
-               // if(date.compareTo(LocalDate.now()) > 0) {
-                 // isValidDate = false;
-                   // this.view.displayCustom("\nCannot re-balance in future\n");
-                 // }
-               // } catch(DateTimeParseException e) {
-               // this.view.displayCustom("\nInvalid date format\n");
-             // }
-           // } while(!isValidDate);
+          //  do {
+          //    isValidDate = true;
+          //    try {
+          //      this.view.displayCustom("Date for re-balance (YYYY-MM-DD) : ");
+          //      date = LocalDate.parse(scanInput());
+          //      if(date.compareTo(LocalDate.now()) > 0) {
+          //        isValidDate = false;
+          //          this.view.displayCustom("\nCannot re-balance in future\n");
+          //        }
+          //      } catch(DateTimeParseException e) {
+          //      this.view.displayCustom("\nInvalid date format\n");
+          //    }
+          //  } while(!isValidDate);
 
           date = LocalDate.now();
 
