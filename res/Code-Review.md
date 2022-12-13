@@ -24,11 +24,11 @@
   of the alphaVantage API).
 
 
-- _____Choice of data-type to represent stocks in portfolio: The provider's code uses `BigDecimal`
+- Choice of data-type to represent stocks in portfolio: The provider's code uses `BigDecimal`
   type to store the stock's quantity.
   This is not a problem as in some instances the quantity may even reach quadrillions (in penny
-  stocks). However, while buying stocks, you onvert the value from big decimla to double, which
-  deafeats its purpose since big decimal can also have numbers that might exceed double's max value.
+  stocks). However, while buying stocks, you convert the value from big decimal to double, which
+  defeats its purpose since big decimal can also have numbers that might exceed double's max value.
   Also, selling in the provided code is done in integer, which again defeats the purpose of nig
   decimal and leads to inconsistencies in implementation. Would be better to just stick to 1 data
   type like double throughout the project.
@@ -38,6 +38,7 @@ then converted to BigDecimal by the model.
 This means that if the portfolio has 50.5 shares of company X, they can only sell atmost 50 shares
 of X. It would have been better to accept sell quantity as double/BigDecimal.
 `sellStockFromPortfolio` method in `PortfolioModelImp.java`
+
 
 - Buy and sell methods accepts quantity to buy/sell stock as `String` data types which is then
   converted to double/Integer/BigDecimal in model for processing.
@@ -88,8 +89,10 @@ of X. It would have been better to accept sell quantity as double/BigDecimal.
 - The code has well-defined interface and their implementation classes. This made adding new
   features to the portfolio fairly simple.
 
+
 - Code was clean and not cluttered at all. It was easy to navigate through function and understand
   their working.
+
 
 - Persisting the portfolio in XML format is a smart move. It made manually reading the raw data
   files very easy while testing our methods.
@@ -98,12 +101,14 @@ of X. It would have been better to accept sell quantity as double/BigDecimal.
 
 - There is no Inflexible portfolio.
 
+
 - Not handling invalid data and edge cases. In some cases, the sell function fails when the user
   tries to
   sell stocks on a holiday/weekend. In some instances they work.
   If a user stops midway in the portfolio creation process, then the portfolio is still created (no
   contents inside). However, when you try to read this empty portfolio,
   the xml module fails and throws IO exception.
+
 
 - No go back option in the middle of an operation. If the user wants to go back to a previous
   option, they will have to complete the current operation first.
@@ -112,6 +117,7 @@ of X. It would have been better to accept sell quantity as double/BigDecimal.
   the
   panel before every method in gui executes, you can use card layout to store multiple panels in the
   same jframe and display the previous/next panel from the layout depending on the user's choice.
+
 
 - There is no feature in the program to get the contents of the portfolio, or its value on a
   specific date. The absence of this function makes
@@ -162,12 +168,16 @@ of X. It would have been better to accept sell quantity as double/BigDecimal.
   tickers, as described
   above. This cause the code to break.
 
+
 - Code going to infinite loop when trying to exit program in text-based interface.
+
 
 - Sell method fails when we try to sell stock on a date that is a holiday/weekend.
 
+
 - Sometimes creating a portfolio fails, but on re-running the program and following the same steps
   as before, it works fine. We were not able to figure out why this is happening.
+
 
 **Overall, it was fun exploring your code. Hope you receive our critique in a positive manner.** 
 
