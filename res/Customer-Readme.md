@@ -94,6 +94,12 @@
 - Added tests for verifying working of re-balancing on today's date in `PortfolioModelImpl` class (
   Line 142 onwards).
 
+- After rebalancing is done, we have displayed the rebalanced portfolio contents to the user using
+  our own implemented method since their existing method requires to go back and choose this
+  portfolio again which reads the xml file again, leading to redundant api calls and taking more
+  time to display the result to the user. Their existing method also does api calls for same ticker
+  more than once increasing processing time even more.
+
 ### Help from Providers
 
 - We received little to no help from our providers. They sent us code that does not follow the code
