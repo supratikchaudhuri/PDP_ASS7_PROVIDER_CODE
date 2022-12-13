@@ -672,7 +672,8 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
     rebalanceWeightages.addKeyListener(new KeyAdapter() {
       public void keyPressed(KeyEvent key) {
         rebalanceWeightages.setEditable((key.getKeyChar() >= '0' && key.getKeyChar() <= '9')
-                || key.getKeyCode() == 8 || key.getKeyChar() == ',' || key.getKeyChar() == '.');
+                || key.getKeyCode() == 8 || key.getKeyChar() == ',' || key.getKeyChar() == '.' ||
+                key.getKeyCode() == 37 || key.getKeyCode() == 39 || key.getKeyChar() == ' ');
       }
     });
 
