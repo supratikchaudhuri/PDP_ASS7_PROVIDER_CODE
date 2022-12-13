@@ -1,10 +1,16 @@
 # How to Run the JAR File
 
-1. cd to the res folder of the submission
+1. cd "res/Jar Files" in terminal
 
 2. Type `java -jar ass7.jar` to run the JAR file.\
    The program should start in the terminal. Follow the instruction displayed to use text / GUI
    interfaces.
+3. The project provided to us mandates having a "Users" folder inside the Jar Files folder.
+4. Our jar file includes this folder but since we have developed it using macOS, windows users might
+   not have this folder in the jar. In that case, please create a new Jar with a "Users" folder
+   inside the "Jar Files" folder of res. Also place the jar in this folder to run.
+5. This was something that came with the provider's code and was out of our control. Sorry for the
+   inconvenience and hope you understand.
 
 # Features that we were able to implement
 
