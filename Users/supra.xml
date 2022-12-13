@@ -23,20 +23,20 @@
             <ticker2>AAPL</ticker2>
             <qty2>83.5535504187141</qty2>
             <PurchaseDate2>2015-10-10</PurchaseDate2>
-            <ticker2>MSFT</ticker2>
-            <qty2>3</qty2>
-            <PurchaseDate2>2020-10-10</PurchaseDate2>
             <ticker2>KO</ticker2>
             <qty2>14</qty2>
             <PurchaseDate2>2022-12-12</PurchaseDate2>
             <ticker2>V</ticker2>
-            <qty2>75.02721177128478</qty2>
+            <qty2>56.25915699706417</qty2>
             <PurchaseDate2>2022-12-12</PurchaseDate2>
             <ticker2>MSFT</ticker2>
-            <qty2>44.81059165973625</qty2>
+            <qty2>24.861507663062845</qty2>
             <PurchaseDate2>2022-12-12</PurchaseDate2>
             <ticker2>KO</ticker2>
             <qty2>111.76544670939504</qty2>
+            <PurchaseDate2>2022-12-12</PurchaseDate2>
+            <ticker2>KO</ticker2>
+            <qty2>153.5455693919024</qty2>
             <PurchaseDate2>2022-12-12</PurchaseDate2>
         </Portfolio2>
     </User>
