@@ -707,7 +707,7 @@ public class PortfolioGUIViewImpl implements PortfolioGUIView {
 
     double total = 0;
 
-    for(String ticker: expectedValuesMap.keySet()) {
+    for (String ticker : expectedValuesMap.keySet()) {
       total += expectedValuesMap.get(ticker);
       panel.add(new JLabel("Ticker: " + ticker
               + " Values : $" + expectedValuesMap.get(ticker)));

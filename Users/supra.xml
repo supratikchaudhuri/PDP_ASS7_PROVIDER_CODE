@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <UserData>
     <User username="supra">
-        <count>1</count>
+        <count>2</count>
         <Portfolio1>
             <ticker1>TSLA</ticker1>
             <qty1>207.52323918484092</qty1>
@@ -19,5 +19,25 @@
             <qty1>4.335572407450498E-14</qty1>
             <PurchaseDate1>2022-12-12</PurchaseDate1>
         </Portfolio1>
+        <Portfolio2>
+            <ticker2>AAPL</ticker2>
+            <qty2>83.5535504187141</qty2>
+            <PurchaseDate2>2015-10-10</PurchaseDate2>
+            <ticker2>MSFT</ticker2>
+            <qty2>3</qty2>
+            <PurchaseDate2>2020-10-10</PurchaseDate2>
+            <ticker2>KO</ticker2>
+            <qty2>14</qty2>
+            <PurchaseDate2>2022-12-12</PurchaseDate2>
+            <ticker2>V</ticker2>
+            <qty2>75.02721177128478</qty2>
+            <PurchaseDate2>2022-12-12</PurchaseDate2>
+            <ticker2>MSFT</ticker2>
+            <qty2>44.81059165973625</qty2>
+            <PurchaseDate2>2022-12-12</PurchaseDate2>
+            <ticker2>KO</ticker2>
+            <qty2>111.76544670939504</qty2>
+            <PurchaseDate2>2022-12-12</PurchaseDate2>
+        </Portfolio2>
     </User>
 </UserData>

@@ -481,9 +481,10 @@ public class PortfolioModelImpl implements PortfolioModel {
   }
 
   @Override
-  public Map<String, Double> rebalance(Portfolio currentPortfolio, Map<String, BigDecimal> currStocks,
-                        Map<String, Double> weights, String fileName, String choosePortfolio,
-                        LocalDate date) {
+  public Map<String, Double> rebalance(Portfolio currentPortfolio,
+                                       Map<String, BigDecimal> currStocks,
+                                       Map<String, Double> weights, String fileName,
+                                       String choosePortfolio, LocalDate date) {
 
     double totalW = 0.0;
     for (String ticker : weights.keySet()) {

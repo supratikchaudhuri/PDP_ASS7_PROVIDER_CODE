@@ -231,7 +231,18 @@ public interface PortfolioModel {
    */
   String totalSoldOnDate(String ticker, String date, int qty);
 
+  /**
+   * Re-balances the portfolio as per weights given by the user.
+   *
+   * @param currentPortfolio re-balancing portfolio.
+   * @param currStocks       current stocks in portfolio.
+   * @param weights          re-balancing weights.
+   * @param fileName         files to make changes in.
+   * @param choosePortfolio  chosen portfolio by the user.
+   * @param date             date of re-balance.
+   * @return map with new values after re-balancing.
+   */
   Map<String, Double> rebalance(Portfolio currentPortfolio, Map<String, BigDecimal> currStocks,
-                 Map<String, Double> weights, String fileName, String choosePortfolio,
-                 LocalDate date);
+                                Map<String, Double> weights, String fileName,
+                                String choosePortfolio, LocalDate date);
 }

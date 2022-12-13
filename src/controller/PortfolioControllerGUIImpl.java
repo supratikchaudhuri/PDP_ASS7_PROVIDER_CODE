@@ -409,7 +409,8 @@ public class PortfolioControllerGUIImpl implements PortfolioControllerGUI, Actio
           if (Math.abs(totalW - 100.0) > 0.01) {
             this.GUIView.showPopupMsg("Total weightage needs to be 100%", "Warning");
           } else {
-            Map<String, Double> expectedValuesMap = this.model.rebalance(currentPortfolio, currentStocks, weights, fileName,
+            Map<String, Double> expectedValuesMap = this.model.rebalance(currentPortfolio,
+                    currentStocks, weights, fileName,
                     portfolioChoice, LocalDate.now());
 
             this.GUIView.showPopupMsg("Re-balancing successful! Go back to view" +
