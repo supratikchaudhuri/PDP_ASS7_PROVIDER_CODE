@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<UserData>
+    <User username="supra">
+        <count>1</count>
+        <Portfolio1>
+            <ticker1>AMZN</ticker1>
+            <qty1>15</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>NFLX</ticker1>
+            <qty1>100</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+            <ticker1>V</ticker1>
+            <qty1>1000</qty1>
+            <PurchaseDate1>2022-12-12</PurchaseDate1>
+        </Portfolio1>
+    </User>
+</UserData>

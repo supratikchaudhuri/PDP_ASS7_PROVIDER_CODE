@@ -63,30 +63,15 @@ is unable to access other files. Hence, it crashes in the first step i.e, cannot
 
 2. Not complete accuracy in re-balancing. Fractional inaccuracy persists.
 
-    - Our providers use `BigDecimal` data types handle quantity of a stock. When we buy a stock, the
-      view accepts quality as string.
-      The controller than sends this string to the model, which then convert this string to a
-      double, and then converts it to a BigDecimal
-
-    - While selling stocks from the, the model can sell whole values of stocks (integers not
+    - While selling stocks from the portfolio, the model can sell whole values of stocks (integers not
       doubles/BigDecimals). As a result, the quantity to be sold
       by our re-balancing algorithm (which is accurate) would round down that value and miss out on
       a small fraction of stocks that is supposed to be sold.
 
     - We have changed the data types from int to double/BigDecimal to the best of our knowledge but
-      the problem still persists in some places.
+      the problem still persists in some places because of BigDecimal conversions.
 
-
-3. We were not able to test the re-balancing function. This is due to the following reasons:
-
-    - The providers have not written any test for their controllers and views. As a result we were
-      not able to add controller and view
-      tests.
-
-    - We tried to create new test classes for the controllers and view, however, we were not able to
-      do it properly
-      as it was hard to understand the coupling between model view and controllers in their program.
-
+      
 ### Changes we made to the provider's code
 
 - Added a method to get list of all stocks in the portfolio on today's date in `PortfolioImpl`
